@@ -136,7 +136,7 @@ You're a wizards apprentice and you need to create his spells and potions for hi
 
 ## Storyboarding
 
-![Storyboard](images\EDU_Game_Dev_Storyboard_1.jpg "Storyboard")
+![Storyboard](EDU_Game_Dev_Storyboard_1.jpg "Storyboard")
 
 
 # Assets Needed
