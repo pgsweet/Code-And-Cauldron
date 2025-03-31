@@ -11,6 +11,7 @@ public class EditorScript : MonoBehaviour
     private GameObject openEditorButton;
     private GameObject textInput;
     private GameObject runButton;
+    private GameObject clearButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,6 +19,7 @@ public class EditorScript : MonoBehaviour
         openEditorButton = transform.Find("Open Editor Button").gameObject;  
         textInput = transform.Find("Editor Text Input").gameObject;
         runButton = transform.Find("Run Button").gameObject;
+        clearButton = transform.Find("Clear Button").gameObject;
     }
 
     public void toggleEditor()
@@ -31,6 +33,7 @@ public class EditorScript : MonoBehaviour
         openEditorButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
         textInput.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
         runButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
+        clearButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
 
         toggled = !toggled;
     }
@@ -49,8 +52,14 @@ public class EditorScript : MonoBehaviour
         foreach (List<string> line in parsedCode)
         {
             // Process each line of code here
-            Debug.Log(string.Join(" ", line));
+            Debug.Log(string.Join(",", line));
         }
+    }
+
+    public void clearCode()
+    {
+        textInput.GetComponent<UnityEngine.UI.InputField>().text = string.Empty;
+        Debug.Log("Code cleared.");
     }
 
     private List<List<string>> parseCode(string code)
@@ -67,4 +76,6 @@ public class EditorScript : MonoBehaviour
 
         return parsedCode;
     }
+
+    
 }

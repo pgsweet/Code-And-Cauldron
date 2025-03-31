@@ -1,0 +1,14 @@
+# Patrick's TODO:
+- [ ] create list of commands
+- [ ] error checking
+    - [ ] invalid arguments
+    - [ ] invalid command
+    - [ ] invalid syntax
+    - [ ] display error in text editor?
+        - might have to use the non-legacy editor
+- [ ] running the code
+    - [ ] make it run slower so the user can process whats happening
+        - maybe make it get faster over time so long programs dont take forever
+    - [ ] add two different speeds
+        - slow and fast
+            - could also be a slider?
