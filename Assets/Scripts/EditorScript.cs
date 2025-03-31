@@ -4,6 +4,17 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+public static class CommandConstants
+{
+    public const string MOV = "mov";
+    public const string BOT = "bot";
+    public const string SPL = "spl";
+    public const string CLR = "clr";
+    public const string INP = "inp";
+    public const string OUT = "out";
+}
+
 public class EditorScript : MonoBehaviour
 {
     private bool toggled = false;
@@ -12,6 +23,16 @@ public class EditorScript : MonoBehaviour
     private GameObject textInput;
     private GameObject runButton;
     private GameObject clearButton;
+
+    // COMMANDS
+    private string[][] commands = {
+        new string[] {"mov", "NON_EMPTY", "CAULDRON CONTAINER SIMILAR", "NUMBER ALL"},
+        new string[] {"bot", "EMPTY", "NUMBER ONE"},
+        new string[] {"spl"},
+        new string[] {"clr", "CAULDRON CONTAINER"},
+        new string[] {"inp", "CONTAINER SIMILAR"},
+        new string[] {"out", "NON_EMPTY", "NUMBER ALL"}
+    };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,10 +70,39 @@ public class EditorScript : MonoBehaviour
         }
 
         List<List<string>> parsedCode = parseCode(rawCode);
-        foreach (List<string> line in parsedCode)
+        // foreach (List<string> line in parsedCode)
+        // {
+        //     // Process each line of code here
+        //     Debug.Log(string.Join(",", line));
+        // }
+
+        for (int i = 0; i < parsedCode.Count; i++)
         {
-            // Process each line of code here
-            Debug.Log(string.Join(",", line));
+            switch(parsedCode[i][0])
+            {
+                case (CommandConstants.MOV):
+                    mov(parsedCode[i].ToArray());
+                    Debug.Log("MOV command executed.");
+                    break;
+                case (CommandConstants.BOT):
+                    Debug.Log("BOT command executed.");
+                    break;
+                case (CommandConstants.SPL):
+                    Debug.Log("SPL command executed.");
+                    break;
+                case (CommandConstants.CLR):
+                    Debug.Log("CLR command executed.");
+                    break;
+                case (CommandConstants.INP):
+                    Debug.Log("INP command executed.");
+                    break;
+                case (CommandConstants.OUT):
+                    Debug.Log("OUT command executed.");
+                    break;
+                default:
+                    Debug.LogError("Unknown command: " + parsedCode[i][0]);
+                    break;
+            }
         }
     }
 
@@ -77,5 +127,9 @@ public class EditorScript : MonoBehaviour
         return parsedCode;
     }
 
-    
+    private void mov(string[] command)
+    {
+        
+    }
+
 }
