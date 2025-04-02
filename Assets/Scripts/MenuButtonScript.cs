@@ -38,4 +38,14 @@ public class MenuButtonScript : MonoBehaviour
         }
         editor.GetComponent<EditorScript>().clearCode();
     }
+
+    public void checkContainers()
+    {
+        if (editor == null)
+        {
+            Debug.LogError("Editor not found.");
+            return;
+        }
+        editor.GetComponent<EditorScript>().checkContainers();
+    }
 }
