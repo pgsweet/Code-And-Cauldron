@@ -292,6 +292,7 @@ public class EditorScript : MonoBehaviour
             if (isContainerEmpty(containers[container2Number]))
             {
                 containers[container2Number].setItem(itemName, numItemsToMove);
+                containers[container1Number].addToItem(-numItemsToMove);
             }
             else
             {
