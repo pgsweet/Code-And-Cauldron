@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Editor
+  - Container 1
+  - Container 2
+  - Container 3
+  - Container 4
   layers:
   - Default
   - TransparentFX

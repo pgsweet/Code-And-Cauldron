@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 
 
 public static class CommandConstants
@@ -27,12 +29,13 @@ public class EditorScript : MonoBehaviour
 
     // CONTAINERS, formatted as [name, number of items]
     public List<System.Object[]> cauldron = new List<System.Object[]>{};
-    private List<System.Object[]> containers = new List<System.Object[]>{
-        new System.Object[] {"test", 5}, 
-        new System.Object[] {"", 0}, 
-        new System.Object[] {"test", 1}, 
-        new System.Object[] {"", 0}
-    };
+    // private List<System.Object[]> containers = new List<System.Object[]>{
+    //     new System.Object[] {"test", 5}, 
+    //     new System.Object[] {"", 0}, 
+    //     new System.Object[] {"test", 1}, 
+    //     new System.Object[] {"", 0}
+    // };
+    public ContainerScript[] containers = new ContainerScript[4];
 
     // COMMANDS
     private string[][] commands = {
@@ -46,7 +49,9 @@ public class EditorScript : MonoBehaviour
 
     // Formatted as [name, number of items, commands till expires]
     public List<System.Object[]> inputItems = new List<System.Object[]>{
-        new System.Object[] {"test", 3, -1}
+        new System.Object[] {"1", 3, -1},
+        new System.Object[] {"2", 5, -1},
+        new System.Object[] {"3", 1, -1}
     };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -57,6 +62,18 @@ public class EditorScript : MonoBehaviour
         runButton = transform.Find("Run Button").gameObject;
         clearButton = transform.Find("Clear Button").gameObject;
         checkContainersButton = transform.Find("Check Button").gameObject;
+
+        // get the containers from the scene
+        // containers[0] = GameObject.FindGameObjectWithTag("Container 1").GetComponent<ContainerScript>();
+        // containers[1] = GameObject.FindGameObjectWithTag("Container 2").GetComponent<ContainerScript>();
+        // containers[2] = GameObject.FindGameObjectWithTag("Container 3").GetComponent<ContainerScript>();
+        // containers[3] = GameObject.FindGameObjectWithTag("Container 4").GetComponent<ContainerScript>();
+
+        if (containers[0] == null || containers[1] == null || containers[2] == null || containers[3] == null)
+        {
+            Debug.LogError("Container not found.");
+            return;
+        }
     }
 
     public void toggleEditor()
@@ -106,13 +123,13 @@ public class EditorScript : MonoBehaviour
         // check if the containers are empty
         for (int i = 0; i < containers.Count(); i++)
         {
-            if ((int)containers[i][1] == 0)
+            if (isContainerEmpty(containers[i]))
             {
                 Debug.Log("Container " + (i+1) + " is empty.");
             }
             else
             {
-                Debug.Log("Container " + (i+1) + " has " + (int)containers[i][1] + " " + containers[i][0] + "(s).");
+                Debug.Log("Container " + (i+1) + " has " + containers[i].getItemCount() + " " + containers[i].getItemName() + "(s).");
             }
         }
         // print cauldron contents
@@ -180,7 +197,12 @@ public class EditorScript : MonoBehaviour
                 {
                     continue;
                 }
-                inputItems[i][2] = (int)inputItems[i][2] - 1;
+                // cannot be less than the position its in
+                if ((int)inputItems[i][2] >= i) 
+                {
+                    inputItems[i][2] = (int)inputItems[i][2] - 1;
+                }
+
                 if ((int)inputItems[i][2] == 0)
                 {
                     Debug.LogError("Item " + inputItems[i][0] + " has expired.");
@@ -229,13 +251,13 @@ public class EditorScript : MonoBehaviour
         }
 
         // check if container1 has items
-        if ((int)containers[container1Number][1] == 0)
+        if (isContainerEmpty(containers[container1Number]))
         {
             Debug.LogError("Container 1 is empty.");
             return;
         }
         // check if container2 is not a cauldron and not empty or does not contain a similar item
-        if (command[2] != "cauldron" && !((int)containers[container2Number][1] == 0 || containers[container2Number][0].ToString() == containers[container1Number][0].ToString()))
+        if (command[2] != "cauldron" && !(isContainerEmpty(containers[container2Number]) || isSameItem(containers[container1Number], containers[container2Number])))
         {
             Debug.LogError("Container 2 is not empty or does not contain a similar item.");
             return;
@@ -244,12 +266,12 @@ public class EditorScript : MonoBehaviour
         // check if the user inputed an amount of items to move
         if (command.Count() == 3){
             // add the number of items in arg1 to arg3
-            int itemsToMove = (int)containers[container1Number][1];
+            int itemsToMove = containers[container1Number].getItemCount();
             command.Add(itemsToMove.ToString());
         }
 
         // check if the user inputed a valid number of items to move
-        if (Int32.Parse(command[3]) > (int)containers[container1Number][1])
+        if (Int32.Parse(command[3]) > containers[container1Number].getItemCount())
         {
             Debug.LogError("Cannot move more items than are in the container.");
             return;
@@ -257,24 +279,24 @@ public class EditorScript : MonoBehaviour
 
         // move items 
         int numItemsToMove = Int32.Parse(command[3]);
-        string itemName = containers[container1Number][0].ToString();
+        string itemName = containers[container1Number].getItemName();
         if (command[2] == "cauldron")
         {
             cauldron.Add(new System.Object[] { itemName, numItemsToMove });
-            containers[container1Number][1] = (int)containers[container1Number][1] - numItemsToMove;
-            if ((int)containers[container1Number][1] == 0)
-            {
-                containers[container1Number][0] = "";
-            }
+            containers[container1Number].addToItem(-numItemsToMove);
         }
         else
         {
-            containers[container2Number][0] = itemName;
-            containers[container2Number][1] = (int)containers[container2Number][1] + numItemsToMove;
-            containers[container1Number][1] = (int)containers[container1Number][1] - numItemsToMove;
-            if ((int)containers[container1Number][1] == 0)
+            // check if container 2 is empty, if it has been just do .setItem()
+            // if not, add the number of items to the container2 and subtract from container1
+            if (isContainerEmpty(containers[container2Number]))
             {
-                containers[container1Number][0] = "";
+                containers[container2Number].setItem(itemName, numItemsToMove);
+            }
+            else
+            {
+                containers[container2Number].addToItem(numItemsToMove);
+                containers[container1Number].addToItem(-numItemsToMove);
             }
         }
         Debug.Log($"MOV command ran: {command[1]}, {command[2]}, {numItemsToMove}");
@@ -303,7 +325,7 @@ public class EditorScript : MonoBehaviour
         }
 
         // make sure arg1 is an empty container
-        if ((int)containers[container1Number][1] != 0)
+        if (!isContainerEmpty(containers[container1Number]))
         {
             Debug.LogError($"Container{container1Number} is not empty.");
             return;
@@ -314,7 +336,7 @@ public class EditorScript : MonoBehaviour
         {
             // add the number of items in arg1 to arg3
             command.Add("1");
-        }
+        }   
 
         // TODO: check if cauldron contains valid a valid recipie
 
@@ -358,7 +380,7 @@ public class EditorScript : MonoBehaviour
             Debug.LogError("Cauldron is already empty.");
             return;
         }
-        else if (command[1] != "cauldron" && (int)containers[container1Number][1] == 0)
+        else if (command[1] != "cauldron" && isContainerEmpty(containers[container1Number]))
         {
             Debug.LogError($"Container {container1Number} is already empty.");
             return;
@@ -396,7 +418,7 @@ public class EditorScript : MonoBehaviour
         }
 
         // make sure arg1 is either empty or has the same item
-        if ((int)containers[container1Number][1] != 0 && containers[container1Number][0].ToString() != inputItems[0][0].ToString())
+        if (!isContainerEmpty(containers[container1Number]) && containers[container1Number].getItemName() != inputItems[0][0].ToString())
         {
             Debug.LogError($"Container {container1Number} is not empty or does not contain a similar item.");
             return;
@@ -405,8 +427,14 @@ public class EditorScript : MonoBehaviour
         // pop the first input item and add it to the container
         string itemName = inputItems[0][0].ToString();
         int itemAmount = (int)inputItems[0][1];
-        containers[container1Number][0] = itemName;
-        containers[container1Number][1] = (int)containers[container1Number][1] + itemAmount;
+        if (isContainerEmpty(containers[container1Number]))
+        {
+            containers[container1Number].setItem(itemName, itemAmount);
+        }
+        else
+        {
+            containers[container1Number].addToItem(itemAmount);
+        }
         inputItems.RemoveAt(0);
 
         Debug.Log("inp command ran: " + command[1] + ", " + itemName + ", " + itemAmount);
@@ -438,7 +466,7 @@ public class EditorScript : MonoBehaviour
         }
 
         // make sure arg1 is not empty
-        if ((int)containers[container1Number][1] == 0)
+        if (isContainerEmpty(containers[container1Number]))
         {
             Debug.LogError($"Container {container1Number} is empty.");
             return;
@@ -450,7 +478,7 @@ public class EditorScript : MonoBehaviour
             command.Add("1");
         }
         // check if user inputed a valid number of items to output
-        if (Int32.Parse(command[2]) > (int)containers[container1Number][1])
+        if (Int32.Parse(command[2]) > containers[container1Number].getItemCount())
         {
             Debug.LogError("Cannot output more items than are in the container.");
             return;
@@ -459,6 +487,17 @@ public class EditorScript : MonoBehaviour
         // TODO: move arg2 items from arg1 to the output
         Debug.LogError("OUT command not finsihed.");
         return;
+    }
+
+    // HELPER FUNCTIONS
+    private bool isContainerEmpty(ContainerScript container)
+    {
+        return container.getItemCount() == 0;
+    }
+
+    private bool isSameItem(ContainerScript container1, ContainerScript container2)
+    {
+        return container1.getItemName() == container2.getItemName();
     }
 
 }
