@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ContainerScript : MonoBehaviour
 {
@@ -7,10 +8,13 @@ public class ContainerScript : MonoBehaviour
     private string itemName = null;
     private int itemCount = 0;
 
+    public GameObject numItemsText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameObject.SetActive(false);
+        numItemsText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,6 +27,7 @@ public class ContainerScript : MonoBehaviour
     {
         itemName = newItemName;
         itemCount = newItemCount;
+        numItemsText.GetComponent<Text>().text = itemCount.ToString();
 
         Sprite newSprite = Resources.Load<Sprite>("Items/" + itemName);
         if (newSprite == null)
@@ -33,6 +38,7 @@ public class ContainerScript : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
 
         gameObject.SetActive(true);
+        numItemsText.SetActive(true);
     }
 
     public void addToItem(int count)
@@ -47,9 +53,12 @@ public class ContainerScript : MonoBehaviour
 
     public void removeItem()
     {
-        itemCount = 0;
-        itemName = null;
         gameObject.SetActive(false);
+        numItemsText.SetActive(false);
+        gameObject.GetComponent<SpriteRenderer>().sprite = null;
+        numItemsText.GetComponent<Text>().text = "0";
+        itemName = null;
+        itemCount = 0;
     }
 
     public string getItemName()

@@ -365,10 +365,10 @@ public class EditorScript : MonoBehaviour
 
         // make sure arg1 is a valid container or cauldron
         int container1Number = -1;
-        bool arg2HasNum = Int32.TryParse(command[2].Substring(command[2].Length-1), out container1Number);
+        bool arg2HasNum = Int32.TryParse(command[1].Substring(command[1].Length-1), out container1Number);
         container1Number -= 1; // Adjust for zero-based index
-        if (!(command[2].Substring(0,command[2].Length-1) == "container" && arg2HasNum && container1Number >= 0 && container1Number <= 3) &&
-        !(command[2] == "cauldron"))
+        if (!(command[1].Substring(0,command[1].Length-1) == "container" && arg2HasNum && container1Number >= 0 && container1Number <= 3) &&
+        !(command[1] == "cauldron"))
         {
             Debug.LogError("Must have a container or cauldron in the second argument.");
             return;
@@ -386,8 +386,18 @@ public class EditorScript : MonoBehaviour
             return;
         }
 
-        // TODO: clear arg1
-        Debug.LogError("CLR command not finished.");
+        if (command[1] == "cauldron")
+        {
+            // remove all items from the cauldron
+            cauldron.Clear();
+            Debug.Log("Cauldron cleared.");
+        }
+        else 
+        {
+            containers[container1Number].removeItem();
+        }
+
+        Debug.Log($"CLR command ran: {command[1]}");
         return;
     }
 
