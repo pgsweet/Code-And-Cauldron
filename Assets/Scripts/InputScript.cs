@@ -60,8 +60,8 @@ public class InputScript : MonoBehaviour
             return;
         }
         gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
-        inputText.GetComponent<Text>().text = inputItems[0].ToString();
-        inputCount.GetComponent<Text>().text = inputItems.Count.ToString();
+        inputText.GetComponent<Text>().text = inputItems[0][0].ToString();
+        inputCount.GetComponent<Text>().text = inputItems[0][1].ToString();
     }
 
     public System.Object[] getInput()
