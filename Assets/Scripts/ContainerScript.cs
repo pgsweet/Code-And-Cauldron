@@ -9,15 +9,15 @@ public class ContainerScript : MonoBehaviour
     private int itemCount = 0;
 
     public GameObject numItemsText;
+    public GameObject itemNameText;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameObject.SetActive(false);
         numItemsText.SetActive(false);
+        itemNameText.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -26,6 +26,7 @@ public class ContainerScript : MonoBehaviour
     public void setItem(string newItemName, int newItemCount)
     {
         itemName = newItemName;
+        itemNameText.GetComponent<Text>().text = itemName;
         itemCount = newItemCount;
         numItemsText.GetComponent<Text>().text = itemCount.ToString();
 
@@ -39,11 +40,11 @@ public class ContainerScript : MonoBehaviour
 
         gameObject.SetActive(true);
         numItemsText.SetActive(true);
+        itemNameText.SetActive(true);
     }
 
     public void addToItem(int count)
     {
-        // add to the item count in the container
         itemCount += count;
         numItemsText.GetComponent<Text>().text = itemCount.ToString();
         if (itemCount <= 0)
@@ -57,9 +58,11 @@ public class ContainerScript : MonoBehaviour
         gameObject.SetActive(false);
         numItemsText.SetActive(false);
         gameObject.GetComponent<SpriteRenderer>().sprite = null;
-        numItemsText.GetComponent<Text>().text = "0";
         itemName = null;
+        itemNameText.GetComponent<Text>().text = "Empty";
         itemCount = 0;
+        numItemsText.GetComponent<Text>().text = "0";
+        itemNameText.SetActive(false);
     }
 
     public string getItemName()
