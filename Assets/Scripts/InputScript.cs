@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InputScript : MonoBehaviour
 {
-    private List<System.Object[]> inputItems = new List<System.Object[]>();
+    private List<System.Object[]> inputItems;
     
     public GameObject inputText;
     public GameObject inputCount;

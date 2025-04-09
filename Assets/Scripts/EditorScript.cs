@@ -31,23 +31,6 @@ public class EditorScript : MonoBehaviour
     public ContainerScript[] containers = new ContainerScript[4];
     public InputScript inputItems;
 
-    // COMMANDS
-    private string[][] commands = {
-        new string[] {"mov", "NON_EMPTY", "CAULDRON CONTAINER SIMILAR", "NUMBER ALL"},
-        new string[] {"bot", "EMPTY", "NUMBER ONE"},
-        new string[] {"spl"},
-        new string[] {"clr", "CAULDRON CONTAINER"},
-        new string[] {"inp", "CONTAINER SIMILAR"},
-        new string[] {"out", "NON_EMPTY", "NUMBER ALL"}
-    };
-
-    // Formatted as [name, number of items, commands till expires]
-    // public List<System.Object[]> inputItems = new List<System.Object[]>{
-    //     new System.Object[] {"1", 3, -1},
-    //     new System.Object[] {"2", 5, -1},
-    //     new System.Object[] {"3", 1, -1}
-    // };
-
 
     void Start()
     {
