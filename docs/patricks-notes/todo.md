@@ -1,9 +1,9 @@
 # Patrick's TODO:
-- [ ] create list of commands
+- [x] create list of commands
 - [ ] error checking
-    - [ ] invalid arguments
-    - [ ] invalid command
-    - [ ] invalid syntax
+    - [x] invalid arguments
+    - [x] invalid command
+    - [x] invalid syntax
     - [ ] display error in text editor?
         - might have to use the non-legacy editor
 - [ ] running the code
