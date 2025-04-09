@@ -26,14 +26,14 @@ public class ContainerScript : MonoBehaviour
     public void setItem(string newItemName, int newItemCount)
     {
         itemName = newItemName;
-        itemNameText.GetComponent<Text>().text = itemName;
         itemCount = newItemCount;
-        numItemsText.GetComponent<Text>().text = itemCount.ToString();
+        itemNameText.GetComponent<Text>().text = newItemName.Replace("_", " ");
+        numItemsText.GetComponent<Text>().text = newItemCount.ToString();
 
-        Sprite newSprite = Resources.Load<Sprite>("Items/" + itemName);
+        Sprite newSprite = Resources.Load<Sprite>("Items/" + newItemName);
         if (newSprite == null)
         {
-            Debug.LogError("Sprite not found: " + itemName);
+            Debug.LogError("Sprite not found: " + newItemName);
             return;
         }
         gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;

@@ -19,9 +19,10 @@ public class InputScript : MonoBehaviour
 
         // TEMP DEBUG CODE
         setInput(new List<System.Object[]> {
-            new System.Object[] {"5", 2, -1},
-            new System.Object[] {"3", 1, -1},
-            new System.Object[] {"1", 4, -1}
+            new System.Object[] {"Black_feather", 2, -1},
+            new System.Object[] {"Blue_mushroom", 1, -1},
+            new System.Object[] {"Bone", 4, -1},
+            new System.Object[] {"Spider", 5, -1}
         });
     }
 
@@ -60,7 +61,7 @@ public class InputScript : MonoBehaviour
             return;
         }
         gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
-        inputText.GetComponent<Text>().text = inputItems[0][0].ToString();
+        inputText.GetComponent<Text>().text = inputItems[0][0].ToString().Replace("_", " ");
         inputCount.GetComponent<Text>().text = inputItems[0][1].ToString();
     }
 

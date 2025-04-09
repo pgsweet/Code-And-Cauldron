@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1f3ab31b2a12a4548ad2f208b83bb250
+guid: 2013cd8d409f75b48b738e767e268093
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,10 +123,10 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Bone
+  - name: Black feather
     originalName: 
-    pivot: {x: 9.25, y: -2.75}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -134,8 +134,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 8
-      height: 16
-    spriteID: 8b8ed28970b491045b4110567a01ed9b
+      height: 13
+    spriteID: 17ddcb1eb986521409810d65a7daee68
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,21 +147,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1414246004
-    name: Bone
+    guid: 1817199590
+    name: Black feather
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Bone
+    - name: Black_feather
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 54
-        y: 44
+        x: 43
+        y: 32
         width: 8
-        height: 16
-      spriteId: 8b8ed28970b491045b4110567a01ed9b
+        height: 13
+      spriteId: 17ddcb1eb986521409810d65a7daee68
     linkedCells: []
     parentIndex: -1
   platformSettings:
