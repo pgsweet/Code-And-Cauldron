@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,7 +20,8 @@ public static class CommandConstants
 public class EditorScript : MonoBehaviour
 {
     private bool toggled = false;
-    public float editorWidth = 900.0f;
+    
+
     private GameObject openEditorButton;
     private GameObject textInput;
     private GameObject runButton;
@@ -34,11 +36,10 @@ public class EditorScript : MonoBehaviour
 
     void Start()
     {
-        openEditorButton = transform.Find("Open Editor Button").gameObject;  
         textInput = transform.Find("Editor Text Input").gameObject;
-        runButton = transform.Find("Run Button").gameObject;
-        clearButton = transform.Find("Clear Button").gameObject;
-        checkContainersButton = transform.Find("Check Button").gameObject;
+        openEditorButton = transform.Find("Open Editor Button").gameObject;
+
+        // openEditorButton.transform.position = new Vector3(Screen.width, 0, 0);
 
         if (containers[0] == null || containers[1] == null || containers[2] == null || containers[3] == null)
         {
@@ -55,18 +56,16 @@ public class EditorScript : MonoBehaviour
             moveDirection = 1;
         }
 
-        openEditorButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
-        textInput.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
-        runButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
-        clearButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
-        checkContainersButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
+        float textInputWidth = textInput.GetComponent<RectTransform>().rect.width;
+
+        gameObject.transform.position += new Vector3(textInputWidth/100 * moveDirection, 0, 0);
 
         toggled = !toggled;
     }
 
     public void runCode()
     {
-        string rawCode = textInput.GetComponent<UnityEngine.UI.InputField>().text;
+        string rawCode = textInput.GetComponent<TMP_InputField>().text;
 
         if (string.IsNullOrEmpty(rawCode))
         {
@@ -86,7 +85,7 @@ public class EditorScript : MonoBehaviour
 
     public void clearCode()
     {
-        textInput.GetComponent<UnityEngine.UI.InputField>().text = string.Empty;
+        textInput.GetComponent<TMP_InputField>().text = string.Empty;
         Debug.Log("Code cleared.");
     }
 

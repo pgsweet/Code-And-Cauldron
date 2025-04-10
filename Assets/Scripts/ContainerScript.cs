@@ -13,9 +13,11 @@ public class ContainerScript : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
-        numItemsText.SetActive(false);
-        itemNameText.SetActive(false);
+        gameObject.transform.parent.gameObject.SetActive(false);
+
+        // gameObject.SetActive(false);
+        // numItemsText.SetActive(false);
+        // itemNameText.SetActive(false);
     }
 
     void Update()
@@ -38,9 +40,8 @@ public class ContainerScript : MonoBehaviour
         }
         gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
 
-        gameObject.SetActive(true);
-        numItemsText.SetActive(true);
-        itemNameText.SetActive(true);
+        gameObject.transform.parent.gameObject.SetActive(true);
+
     }
 
     public void addToItem(int count)
@@ -55,14 +56,13 @@ public class ContainerScript : MonoBehaviour
 
     public void removeItem()
     {
-        gameObject.SetActive(false);
-        numItemsText.SetActive(false);
+        gameObject.transform.parent.gameObject.SetActive(false);
+
         gameObject.GetComponent<SpriteRenderer>().sprite = null;
         itemName = null;
         itemNameText.GetComponent<Text>().text = "Empty";
         itemCount = 0;
         numItemsText.GetComponent<Text>().text = "0";
-        itemNameText.SetActive(false);
     }
 
     public string getItemName()
