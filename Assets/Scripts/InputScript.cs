@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,7 +62,7 @@ public class InputScript : MonoBehaviour
             return;
         }
         gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
-        inputText.GetComponent<Text>().text = inputItems[0][0].ToString().Replace("_", " ");
+        inputText.GetComponent<TMP_Text>().text = inputItems[0][0].ToString().Replace("_", " ");
         inputCount.GetComponent<Text>().text = inputItems[0][1].ToString();
     }
 

@@ -9,6 +9,7 @@ TagManager:
   - Container 2
   - Container 3
   - Container 4
+  - LevelSelect
   layers:
   - Default
   - TransparentFX

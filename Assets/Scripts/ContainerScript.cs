@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ContainerScript : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class ContainerScript : MonoBehaviour
     {
         itemName = newItemName;
         itemCount = newItemCount;
-        itemNameText.GetComponent<Text>().text = newItemName.Replace("_", " ");
+        itemNameText.GetComponent<TMP_Text>().text = newItemName.Replace("_", " ");
         numItemsText.GetComponent<Text>().text = newItemCount.ToString();
 
         Sprite newSprite = Resources.Load<Sprite>("Items/" + newItemName);
@@ -60,9 +61,10 @@ public class ContainerScript : MonoBehaviour
 
         gameObject.GetComponent<SpriteRenderer>().sprite = null;
         itemName = null;
-        itemNameText.GetComponent<Text>().text = "Empty";
+        itemNameText.GetComponent<TMP_Text>().text = "Empty";
         itemCount = 0;
         numItemsText.GetComponent<Text>().text = "0";
+
     }
 
     public string getItemName()
