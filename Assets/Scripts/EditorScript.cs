@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,26 +20,23 @@ public static class CommandConstants
 public class EditorScript : MonoBehaviour
 {
     private bool toggled = false;
-    public float editorWidth = 900.0f;
-    private GameObject openEditorButton;
+    
+    public GameObject codeEditorButton;
+    public GameObject levelSelectButton;
+
     private GameObject textInput;
-    private GameObject runButton;
-    private GameObject clearButton;
-    private GameObject checkContainersButton;
+    public MenuButtonScript menuButtonScript;
 
     // CONTAINERS, formatted as [name, number of items]
     public List<System.Object[]> cauldron = new List<System.Object[]>{};
     public ContainerScript[] containers = new ContainerScript[4];
     public InputScript inputItems;
+    public OutputScript outputScript;
 
 
     void Start()
     {
-        openEditorButton = transform.Find("Open Editor Button").gameObject;  
         textInput = transform.Find("Editor Text Input").gameObject;
-        runButton = transform.Find("Run Button").gameObject;
-        clearButton = transform.Find("Clear Button").gameObject;
-        checkContainersButton = transform.Find("Check Button").gameObject;
 
         if (containers[0] == null || containers[1] == null || containers[2] == null || containers[3] == null)
         {
@@ -55,18 +53,18 @@ public class EditorScript : MonoBehaviour
             moveDirection = 1;
         }
 
-        openEditorButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
-        textInput.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
-        runButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
-        clearButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
-        checkContainersButton.transform.position += new Vector3(editorWidth * moveDirection, 0, 0);
+        float textInputWidth = textInput.GetComponent<RectTransform>().rect.width;
+
+        gameObject.transform.localPosition += new Vector3(textInputWidth * moveDirection, 0, 0);
+        codeEditorButton.transform.localPosition += new Vector3(textInputWidth * moveDirection, 0, 0);
+        levelSelectButton.transform.localPosition += new Vector3(textInputWidth * moveDirection, 0, 0);
 
         toggled = !toggled;
     }
 
     public void runCode()
     {
-        string rawCode = textInput.GetComponent<UnityEngine.UI.InputField>().text;
+        string rawCode = textInput.GetComponent<TMP_InputField>().text;
 
         if (string.IsNullOrEmpty(rawCode))
         {
@@ -80,13 +78,14 @@ public class EditorScript : MonoBehaviour
         //     // Process each line of code here
         //     Debug.Log(string.Join(",", line));
         // }
+        menuButtonScript.openEditor();
 
-        parseCode(parsedCode);
+        StartCoroutine(parseCode(parsedCode));
     }
 
     public void clearCode()
     {
-        textInput.GetComponent<UnityEngine.UI.InputField>().text = string.Empty;
+        textInput.GetComponent<TMP_InputField>().text = string.Empty;
         Debug.Log("Code cleared.");
     }
 
@@ -133,8 +132,9 @@ public class EditorScript : MonoBehaviour
         return parsedCode;
     }
 
-    private void parseCode(List<List<string>> parsedCode)
+    System.Collections.IEnumerator parseCode(List<List<string>> parsedCode)
     {
+        yield return new WaitForSeconds(0.5f);
         foreach (List<string> line in parsedCode)
         {
             switch (line[0])
@@ -164,10 +164,13 @@ public class EditorScript : MonoBehaviour
 
             inputItems.decrementInputLife();
 
+            yield return new WaitForSeconds(1f);
+
             // Debug script
             // Debug.Log(string.Join(",", line));
         }
     }
+
 
     private void movCommand(List<string> command)
     {
@@ -386,7 +389,7 @@ public class EditorScript : MonoBehaviour
             return;
         }
 
-        System.Object[] nextItem = inputItems.getInput();
+        System.Object[] nextItem =  inputItems.getInput();
 
 
         // make sure arg1 is either empty or has the same item
@@ -448,7 +451,8 @@ public class EditorScript : MonoBehaviour
         if (command.Count() == 2)
         {
             // add the number of items in arg1 to arg3
-            command.Add("1");
+            int itemsToMove = containers[container1Number].getItemCount();
+            command.Add(itemsToMove.ToString());
         }
         // check if user inputed a valid number of items to output
         if (Int32.Parse(command[2]) > containers[container1Number].getItemCount())
@@ -458,7 +462,16 @@ public class EditorScript : MonoBehaviour
         }
 
         // TODO: move arg2 items from arg1 to the output
-        Debug.LogError("OUT command not finsihed.");
+        System.Object[] itemToOutput = new System.Object[2];
+        itemToOutput[0] = containers[container1Number].getItemName();
+        itemToOutput[1] = Int32.Parse(command[2]);
+
+        containers[container1Number].addToItem(-Int32.Parse(command[2]));
+
+        outputScript.recieveOutput(itemToOutput);
+
+
+        Debug.Log("out command ran: " + command[1] + ", " + command[2]);
         return;
     }
 

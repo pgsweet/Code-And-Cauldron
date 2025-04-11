@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ContainerScript : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class ContainerScript : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
-        numItemsText.SetActive(false);
-        itemNameText.SetActive(false);
+        gameObject.transform.parent.gameObject.SetActive(false);
+
+        // gameObject.SetActive(false);
+        // numItemsText.SetActive(false);
+        // itemNameText.SetActive(false);
     }
 
     void Update()
@@ -26,21 +29,20 @@ public class ContainerScript : MonoBehaviour
     public void setItem(string newItemName, int newItemCount)
     {
         itemName = newItemName;
-        itemNameText.GetComponent<Text>().text = itemName;
         itemCount = newItemCount;
-        numItemsText.GetComponent<Text>().text = itemCount.ToString();
+        itemNameText.GetComponent<TMP_Text>().text = newItemName.Replace("_", " ");
+        numItemsText.GetComponent<Text>().text = newItemCount.ToString();
 
-        Sprite newSprite = Resources.Load<Sprite>("Items/" + itemName);
+        Sprite newSprite = Resources.Load<Sprite>("Items/" + newItemName);
         if (newSprite == null)
         {
-            Debug.LogError("Sprite not found: " + itemName);
+            Debug.LogError("Sprite not found: " + newItemName);
             return;
         }
         gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
 
-        gameObject.SetActive(true);
-        numItemsText.SetActive(true);
-        itemNameText.SetActive(true);
+        gameObject.transform.parent.gameObject.SetActive(true);
+
     }
 
     public void addToItem(int count)
@@ -55,14 +57,14 @@ public class ContainerScript : MonoBehaviour
 
     public void removeItem()
     {
-        gameObject.SetActive(false);
-        numItemsText.SetActive(false);
+        gameObject.transform.parent.gameObject.SetActive(false);
+
         gameObject.GetComponent<SpriteRenderer>().sprite = null;
         itemName = null;
-        itemNameText.GetComponent<Text>().text = "Empty";
+        itemNameText.GetComponent<TMP_Text>().text = "Empty";
         itemCount = 0;
         numItemsText.GetComponent<Text>().text = "0";
-        itemNameText.SetActive(false);
+
     }
 
     public string getItemName()
