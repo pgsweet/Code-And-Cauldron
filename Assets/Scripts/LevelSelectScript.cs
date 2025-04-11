@@ -31,7 +31,7 @@ public class LevelSelectScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        panel = transform.Find("Panel").gameObject;
+        panel = transform.Find("Background").gameObject;
     }
 
     // Update is called once per frame
