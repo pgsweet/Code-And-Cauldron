@@ -8,6 +8,7 @@ public class MenuButtonScript : MonoBehaviour
     public GameObject levelSelect;
     public GameObject levelSelectButton;
     public GameObject codeEditorButton;
+    public GameObject helpPanel;
 
     void Start()
     {
@@ -74,5 +75,15 @@ public class MenuButtonScript : MonoBehaviour
         levelSelect.SetActive(true);
         levelSelectButton.GetComponent<Button>().interactable = false;
         codeEditorButton.GetComponent<Button>().interactable = true;
+    }
+
+    public void toggleHelp()
+    {
+        if (helpPanel == null)
+        {
+            Debug.LogError("Help panel not found.");
+            return;
+        }
+        helpPanel.SetActive(!helpPanel.activeSelf);
     }
 }
