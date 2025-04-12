@@ -92,7 +92,7 @@ public class ContainerScript : MonoBehaviour
 
     public void enableInfoPanel()
     {
-        string newText = $"Name: {gameObject.name.ToLower()}\nContains:\n";
+        string newText = $"Name: {gameObject.name.ToLower().Replace(" ", "")}\nContains:\n";
         if (itemName != null)
         {
             newText += $"{itemCount} {itemName.Replace("_", " ")}(s)";
