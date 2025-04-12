@@ -28,7 +28,8 @@ public class EditorScript : MonoBehaviour
     public MenuButtonScript menuButtonScript;
 
     // CONTAINERS, formatted as [name, number of items]
-    public List<System.Object[]> cauldron = new List<System.Object[]>{};
+    // public List<System.Object[]> cauldron = new List<System.Object[]>{};
+    public CauldronScript cauldron;
     public ContainerScript[] containers = new ContainerScript[4];
     public InputScript inputItems;
     public OutputScript outputScript;
@@ -111,7 +112,7 @@ public class EditorScript : MonoBehaviour
         else
         {
             Debug.Log("Cauldron has " + cauldron.Count() + " items inside.");
-            foreach (System.Object[] item in cauldron)
+            foreach (System.Object[] item in cauldron.getItems())
             {
                 Debug.Log(item[0] + ": " + item[1]);
             }
@@ -417,7 +418,6 @@ public class EditorScript : MonoBehaviour
         return;
     }
 
-// TODO:
     private void outCommand(List<string> command)
     {
         // check if has at least 1 argument
@@ -462,7 +462,6 @@ public class EditorScript : MonoBehaviour
             return;
         }
 
-        // TODO: move arg2 items from arg1 to the output
         System.Object[] itemToOutput = new System.Object[2];
         itemToOutput[0] = containers[container1Number].getItemName();
         itemToOutput[1] = Int32.Parse(command[2]);
@@ -470,7 +469,6 @@ public class EditorScript : MonoBehaviour
         containers[container1Number].addToItem(-Int32.Parse(command[2]));
 
         outputScript.recieveOutput(itemToOutput);
-
 
         Debug.Log("out command ran: " + command[1] + ", " + command[2]);
         return;

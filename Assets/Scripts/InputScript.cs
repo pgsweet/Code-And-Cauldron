@@ -10,13 +10,16 @@ public class InputScript : MonoBehaviour
     
     public GameObject inputText;
     public GameObject inputCount;
+    public GameObject spriteContainer;
+    public GameObject infoPanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameObject.SetActive(false);
+        spriteContainer.SetActive(false);
         inputText.SetActive(false);
         inputCount.SetActive(false);
+        infoPanel.SetActive(false);
 
         // TEMP DEBUG CODE
         setInput(new List<System.Object[]> {
@@ -39,7 +42,7 @@ public class InputScript : MonoBehaviour
         
         setFields();
 
-        gameObject.SetActive(true);
+        spriteContainer.SetActive(true);
         inputText.SetActive(true);
         inputCount.SetActive(true);
     }
@@ -49,7 +52,7 @@ public class InputScript : MonoBehaviour
         if (inputItems.Count == 0)
         {
             Debug.LogError("No more input items.");
-            gameObject.SetActive(false);
+            spriteContainer.SetActive(false);
             inputText.SetActive(false);
             inputCount.SetActive(false);
             return;
@@ -61,7 +64,7 @@ public class InputScript : MonoBehaviour
             Debug.LogError("Sprite not found: " + inputItems[0][0].ToString());
             return;
         }
-        gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
+        spriteContainer.GetComponent<SpriteRenderer>().sprite = newSprite;
         inputText.GetComponent<TMP_Text>().text = inputItems[0][0].ToString().Replace("_", " ");
         inputCount.GetComponent<Text>().text = inputItems[0][1].ToString();
     }
@@ -76,6 +79,10 @@ public class InputScript : MonoBehaviour
         System.Object[] nextItem = inputItems[0];
         inputItems.RemoveAt(0);
         setFields();
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
+        }
         return nextItem;
     }
 
@@ -105,5 +112,32 @@ public class InputScript : MonoBehaviour
                     i--;
                 }
             }
+    }
+
+    public void enableInfoPanel()
+    {  
+        string newText = $"Remaining Input:\n";
+        if (inputItems.Count != 0)
+        {
+            for (int i = 0; i < inputItems.Count; i++)
+            {
+                newText += $"{inputItems[i][0].ToString().Replace("_", " ")}(s): {inputItems[i][1]}\n";
+            }
+        }
+        else
+        {
+            newText += "None.";
+        }
+
+        Transform[] children = infoPanel.GetComponentsInChildren<Transform>(true);
+        children[1].gameObject.GetComponent<TMP_Text>().text = newText;
+
+        infoPanel.SetActive(true);
+        
+    }
+
+    public void disableInfoPanel()
+    {
+        infoPanel.SetActive(false);
     }
 }
