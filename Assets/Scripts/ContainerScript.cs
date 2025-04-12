@@ -2,28 +2,31 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 public class ContainerScript : MonoBehaviour
 {
-
     private string itemName = null;
     private int itemCount = 0;
 
     public GameObject numItemsText;
     public GameObject itemNameText;
+    public GameObject spriteContainer;
+    public GameObject infoPanel;
 
     void Start()
     {
-        gameObject.transform.parent.gameObject.SetActive(false);
-
-        // gameObject.SetActive(false);
-        // numItemsText.SetActive(false);
-        // itemNameText.SetActive(false);
+        spriteContainer.SetActive(false);
+        numItemsText.SetActive(false);
+        itemNameText.SetActive(false);
+        infoPanel.SetActive(false);
     }
 
     void Update()
     {
-        
+
     }
 
     public void setItem(string newItemName, int newItemCount)
@@ -39,9 +42,11 @@ public class ContainerScript : MonoBehaviour
             Debug.LogError("Sprite not found: " + newItemName);
             return;
         }
-        gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
+        spriteContainer.GetComponent<SpriteRenderer>().sprite = newSprite;
 
-        gameObject.transform.parent.gameObject.SetActive(true);
+        spriteContainer.SetActive(true);
+        numItemsText.SetActive(true);
+        itemNameText.SetActive(true);
 
     }
 
@@ -57,9 +62,11 @@ public class ContainerScript : MonoBehaviour
 
     public void removeItem()
     {
-        gameObject.transform.parent.gameObject.SetActive(false);
+        spriteContainer.SetActive(false);
+        numItemsText.SetActive(false);
+        itemNameText.SetActive(false);
 
-        gameObject.GetComponent<SpriteRenderer>().sprite = null;
+        spriteContainer.GetComponent<SpriteRenderer>().sprite = null;
         itemName = null;
         itemNameText.GetComponent<TMP_Text>().text = "Empty";
         itemCount = 0;
@@ -76,7 +83,5 @@ public class ContainerScript : MonoBehaviour
     {
         return itemCount;
     }
-
-
 
 }

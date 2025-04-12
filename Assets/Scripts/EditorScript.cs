@@ -89,6 +89,7 @@ public class EditorScript : MonoBehaviour
         Debug.Log("Code cleared.");
     }
 
+    // unused function used for debugging
     public void checkContainers(){
         // check if the containers are empty
         for (int i = 0; i < containers.Count(); i++)
