@@ -14,13 +14,16 @@ public class OutputScript : MonoBehaviour
     };
     public GameObject outputText;
     public GameObject outputCount;
+    public GameObject spriteContainer;
+    public GameObject infoPanel;
     private List<System.Object[]> currentOutputItems = new List<System.Object[]>();
 
     void Start()
     {
-        gameObject.SetActive(false);
+        spriteContainer.SetActive(false);
         outputText.SetActive(false);
         outputCount.SetActive(false);
+        infoPanel.SetActive(false);
     }
 
 
@@ -33,6 +36,10 @@ public class OutputScript : MonoBehaviour
     {
         currentOutputItems.Add(item);
         setFields();
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
+        }
         checkOutput();
     }
 
@@ -50,11 +57,11 @@ public class OutputScript : MonoBehaviour
             Debug.LogError("Sprite not found: " + currItem[0].ToString());
             return;
         }
-        gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
+        spriteContainer.GetComponent<SpriteRenderer>().sprite = newSprite;
         outputText.GetComponent<TMP_Text>().text = currItem[0].ToString().Replace("_", " ");
         outputCount.GetComponent<Text>().text = currItem[1].ToString();
 
-        gameObject.SetActive(true);
+        spriteContainer.SetActive(true);
         outputText.SetActive(true);
         outputCount.SetActive(true);
     }
@@ -87,5 +94,32 @@ public class OutputScript : MonoBehaviour
             Debug.LogError(errorMessage);
         }
 
+    }
+
+    public void enableInfoPanel()
+    {
+        string newText = "Required Output:\n";
+        for (int i = 0; i < requiredItems.Count; i++)
+        {
+            newText += requiredItems[i][1].ToString() + " " + requiredItems[i][0].ToString().Replace("_", " ") + "(s),";
+            if (i < currentOutputItems.Count && currentOutputItems[0][0].ToString() == requiredItems[i][0].ToString() && Int32.Parse(currentOutputItems[0][1].ToString()) == Int32.Parse(requiredItems[i][1].ToString()))
+            {
+                newText += " Done\n";
+            }
+            else
+            {
+                newText += " Not Done\n";
+            }
+        }
+
+        Transform[] children = infoPanel.GetComponentsInChildren<Transform>(true);
+        children[1].gameObject.GetComponent<TMP_Text>().text = newText;
+
+        infoPanel.SetActive(true);
+    }
+
+    public void disableInfoPanel()
+    {
+        infoPanel.SetActive(false);
     }
 }

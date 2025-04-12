@@ -8,30 +8,12 @@ public class LevelSelectScript : MonoBehaviour
     public GameObject panel;
     // formatted as:
     // { {inputItems}, {requiredOutputItems}, {completed, score?}}
-    private List<List<List<System.Object[]>>> levels = new List<List<List<System.Object[]>>>()
-    {
-        new List<List<System.Object[]>>()
-        {
-            new List<System.Object[]>()
-            {
-                new System.Object[] {"Bone", 1, -1}
-            },
-            new List<System.Object[]>()
-            {
-                new System.Object[] {"Bone", 1, -1}
-            },
-            new List<System.Object[]>()
-            {
-                new System.Object[] {false, 0}
-            }
-
-        }
-    };
+    List<Level> levels = new List<Level>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        panel = transform.Find("Background").gameObject;
+        panel = transform.Find("Level Background").gameObject;
     }
 
     // Update is called once per frame

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
+using System.Linq;
 
 public class ContainerScript : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class ContainerScript : MonoBehaviour
         numItemsText.SetActive(true);
         itemNameText.SetActive(true);
 
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
+        }
     }
 
     public void addToItem(int count)
@@ -82,6 +87,31 @@ public class ContainerScript : MonoBehaviour
     public int getItemCount()
     {
         return itemCount;
+    }
+
+
+    public void enableInfoPanel()
+    {
+        string newText = $"Name: {gameObject.name.ToLower()}\nContains:\n";
+        if (itemName != null)
+        {
+            newText += $"{itemCount} {itemName.Replace("_", " ")}(s)";
+        }
+        else
+        {
+            newText += "Nothing";
+        }
+
+
+        Transform[] children = infoPanel.GetComponentsInChildren<Transform>(true);
+        children[1].gameObject.GetComponent<TMP_Text>().text = newText;
+
+        infoPanel.SetActive(true);
+    }
+
+    public void disableInfoPanel()
+    {
+        infoPanel.SetActive(false);
     }
 
 }
