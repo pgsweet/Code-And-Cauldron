@@ -24,7 +24,7 @@ public class EditorScript : MonoBehaviour
     public GameObject codeEditorButton;
     public GameObject levelSelectButton;
 
-    private GameObject textInput;
+    public GameObject textInput;
     public MenuButtonScript menuButtonScript;
 
     // CONTAINERS, formatted as [name, number of items]
@@ -37,8 +37,6 @@ public class EditorScript : MonoBehaviour
 
     void Start()
     {
-        textInput = transform.Find("Editor Text Input").gameObject;
-
         if (containers[0] == null || containers[1] == null || containers[2] == null || containers[3] == null)
         {
             Debug.LogError("Container not found.");

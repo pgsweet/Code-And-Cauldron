@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelSelectScript : MonoBehaviour
 {
     private bool toggled = false;
-    public GameObject panel;
+    public GameObject levelBackground;
     // formatted as:
     // { {inputItems}, {requiredOutputItems}, {completed, score?}}
     List<Level> levels = new List<Level>();
@@ -13,7 +13,7 @@ public class LevelSelectScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        panel = transform.Find("Level Background").gameObject;
+
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class LevelSelectScript : MonoBehaviour
             moveDirection = 1;
         }
 
-        float rectWidth = panel.GetComponent<RectTransform>().rect.width;
+        float rectWidth = levelBackground.GetComponent<RectTransform>().rect.width;
 
         gameObject.transform.localPosition += new Vector3(moveDirection * rectWidth, 0, 0);
 
