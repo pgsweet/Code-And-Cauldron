@@ -23,10 +23,8 @@ public class InputScript : MonoBehaviour
 
         // TEMP DEBUG CODE
         setInput(new List<System.Object[]> {
-            new System.Object[] {"Black_feather", 2, -1},
-            new System.Object[] {"Blue_mushroom", 1, -1},
-            new System.Object[] {"Bone", 4, -1},
-            new System.Object[] {"Spider", 5, -1}
+            new System.Object[] {"Feather", 2, -1},
+            new System.Object[] {"Feather", 2, -1}
         });
     }
 
@@ -61,8 +59,12 @@ public class InputScript : MonoBehaviour
         Sprite newSprite = Resources.Load<Sprite>("Items/" + inputItems[0][0].ToString());
         if (newSprite == null)
         {
-            Debug.LogError("Sprite not found: " + inputItems[0][0].ToString());
-            return;
+            newSprite = Resources.Load<Sprite>("Potions/" + inputItems[0][0].ToString());
+            if (newSprite == null)
+            {
+                Debug.LogError("Sprite not found: " + inputItems[0][0].ToString());
+                return;
+            }
         }
         spriteContainer.GetComponent<SpriteRenderer>().sprite = newSprite;
         inputText.GetComponent<TMP_Text>().text = inputItems[0][0].ToString().Replace("_", " ");

@@ -34,6 +34,10 @@ public class CauldronScript : MonoBehaviour
     public void Clear()
     {
         currentItems.Clear();
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
+        }
     }
 
     public void enableInfoPanel()

@@ -40,8 +40,12 @@ public class ContainerScript : MonoBehaviour
         Sprite newSprite = Resources.Load<Sprite>("Items/" + newItemName);
         if (newSprite == null)
         {
-            Debug.LogError("Sprite not found: " + newItemName);
-            return;
+            newSprite = Resources.Load<Sprite>("Potions/" + newItemName);
+            if (newSprite == null)
+            {
+                Debug.LogError("Sprite not found: " + newItemName);
+                return;
+            }
         }
         spriteContainer.GetComponent<SpriteRenderer>().sprite = newSprite;
 
@@ -62,6 +66,10 @@ public class ContainerScript : MonoBehaviour
         if (itemCount <= 0)
         {
             removeItem();
+        }
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
         }
     }
 

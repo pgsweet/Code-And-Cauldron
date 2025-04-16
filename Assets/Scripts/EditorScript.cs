@@ -295,11 +295,30 @@ public class EditorScript : MonoBehaviour
             // add the number of items in arg1 to arg3
             command.Add("1");
         }   
+        RecipeCheck recipeCheck = new RecipeCheck();
+        System.Object[] craftedPotion = recipeCheck.CheckRecipe(cauldron.getItems());
 
-        // TODO: check if cauldron contains valid a valid recipie
+        if (craftedPotion[0] == null)
+        {
+            Debug.LogError("Cauldron does not contain a valid recipe.");
+            return;
+        }
 
         // TODO: create the potions and place them into arg1
-        Debug.LogError("BOT command not finsihed.");
+        string potionName = craftedPotion[0].ToString();
+        int itemAmount = (int)craftedPotion[1];
+        if (isContainerEmpty(containers[container1Number]))
+        {
+            containers[container1Number].setItem(potionName, itemAmount);
+            cauldron.Clear();
+        }
+        else
+        {
+            containers[container1Number].addToItem(itemAmount);
+            cauldron.Clear();
+        }
+
+        Debug.Log("BOT command ran: " + command[1] + ", " + potionName + ", " + itemAmount);
         return;
     }
 

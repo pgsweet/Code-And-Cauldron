@@ -10,7 +10,7 @@ public class OutputScript : MonoBehaviour
 {
 
     private List<System.Object[]> requiredItems = new List<System.Object[]>() {
-        new System.Object[] {"Black_feather", 2},
+        new System.Object[] {"Potion of Weightlessness", 1},
     };
     public GameObject outputText;
     public GameObject outputCount;
@@ -54,8 +54,12 @@ public class OutputScript : MonoBehaviour
         Sprite newSprite = Resources.Load<Sprite>("Items/" + currItem[0].ToString());
         if (newSprite == null)
         {
-            Debug.LogError("Sprite not found: " + currItem[0].ToString());
-            return;
+            newSprite = Resources.Load<Sprite>("Potions/" + currItem[0].ToString());
+            if (newSprite == null)
+            {
+                Debug.LogError("Sprite not found: " + currItem[0].ToString());
+                return;
+            }
         }
         spriteContainer.GetComponent<SpriteRenderer>().sprite = newSprite;
         outputText.GetComponent<TMP_Text>().text = currItem[0].ToString().Replace("_", " ");
