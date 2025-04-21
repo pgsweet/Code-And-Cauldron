@@ -46,10 +46,23 @@ public class OutputScript : MonoBehaviour
     public void setRequiredItems(List<System.Object[]> newRequiredItems)
     {
         requiredItems = newRequiredItems;
+        currentOutputItems.Clear();
+        setFields();
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
+        }
     }
 
     private void setFields()
     {
+        if (currentOutputItems.Count == 0)
+        {
+            spriteContainer.SetActive(false);
+            outputText.SetActive(false);
+            outputCount.SetActive(false);
+            return;
+        }
         System.Object[] currItem = currentOutputItems[currentOutputItems.Count - 1];
         Sprite newSprite = Resources.Load<Sprite>("Items/" + currItem[0].ToString());
         if (newSprite == null)

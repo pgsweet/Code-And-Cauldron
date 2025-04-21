@@ -40,6 +40,11 @@ public class InputScript : MonoBehaviour
         
         setFields();
 
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
+        }
+
         spriteContainer.SetActive(true);
         inputText.SetActive(true);
         inputCount.SetActive(true);

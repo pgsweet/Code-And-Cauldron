@@ -171,7 +171,6 @@ public class EditorScript : MonoBehaviour
         }
     }
 
-
     private void movCommand(List<string> command)
     {
         if (command.Count() < 3)
@@ -259,7 +258,6 @@ public class EditorScript : MonoBehaviour
         Debug.Log($"MOV command ran: {command[1]}, {command[2]}, {numItemsToMove}");
     }
 
-// TODO:
     private void botCommand(List<string> command)
     {
         if (command.Count() < 2)
@@ -304,7 +302,6 @@ public class EditorScript : MonoBehaviour
             return;
         }
 
-        // TODO: create the potions and place them into arg1
         string potionName = craftedPotion[0].ToString();
         int itemAmount = (int)craftedPotion[1];
         if (isContainerEmpty(containers[container1Number]))
@@ -500,6 +497,15 @@ public class EditorScript : MonoBehaviour
     private bool isSameItem(ContainerScript container1, ContainerScript container2)
     {
         return container1.getItemName() == container2.getItemName();
+    }
+
+    public void clearAllContainers()
+    {
+        for (int i = 0; i < containers.Count(); i++)
+        {
+            containers[i].removeItem();
+        }
+        cauldron.Clear();
     }
 
 }

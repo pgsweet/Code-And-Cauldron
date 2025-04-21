@@ -7,9 +7,9 @@ public class Level
     bool completed = false;
     int score = 0;
     int levelNum = 0;
-    string dialogue = null;
+    List<string> dialogue = null;
 
-    public Level(List<System.Object[]> inputItems, List<System.Object[]> requiredOutputItems, int levelNum, string dialogue)
+    public Level(List<System.Object[]> inputItems, List<System.Object[]> requiredOutputItems, int levelNum, List<string> dialogue)
     {
         this.inputItems = inputItems;
         this.requiredOutputItems = requiredOutputItems;
@@ -24,7 +24,7 @@ public class Level
         this.levelNum = levelNum;
     }
 
-    public string GetDialogue()
+    public List<string> GetDialogue()
     {
         return dialogue;
     }
@@ -79,7 +79,7 @@ public class Level
         this.levelNum = levelNum;
     }
 
-    public void SetDialogue(string dialogue)
+    public void SetDialogue(List<string> dialogue)
     {
         this.dialogue = dialogue;
     }
