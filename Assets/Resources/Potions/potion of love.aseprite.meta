@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7e57d3b1cbad0214eac20aa16b1c6175
+guid: 116b374d6bb9e7a42bb80813375ad360
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,10 +123,10 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: potion of gigantification
+  - name: potion of love
     originalName: 
-    pivot: {x: 0.625, y: -2.7307694}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -135,7 +135,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 26
-    spriteID: 0f5a28ee3cbbefb43a199cf61157afa5
+    spriteID: b4d5d84f56359974d90595a4fa6657e0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,13 +147,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1150130784
-    name: potion of gigantification
+    guid: -82245734
+    name: potion of love
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: potion of gigantification
+    - name: Potion of Love
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -161,7 +161,7 @@ ScriptedImporter:
         y: 71
         width: 16
         height: 26
-      spriteId: 0f5a28ee3cbbefb43a199cf61157afa5
+      spriteId: b4d5d84f56359974d90595a4fa6657e0
     linkedCells: []
     parentIndex: -1
   platformSettings:

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ecea573dc6809e74db1515f91ad395b0
+guid: 7ea5ec80f5e689548bc6275abbf7358e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,10 +123,10 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: potion of weightlessness
+  - name: potion of dragonification
     originalName: 
-    pivot: {x: 0.625, y: -2.7307694}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -135,7 +135,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 26
-    spriteID: 7a33f5d4dd13fcc4ca97c21db0c97f65
+    spriteID: e0542d188aef6aa40ad3ef7c5c9a1433
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,13 +147,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 762036288
-    name: potion of weightlessness
+    guid: 1468421927
+    name: potion of dragonification
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: potion of weightlessness
+    - name: Potion of Dragonification
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -161,7 +161,7 @@ ScriptedImporter:
         y: 71
         width: 16
         height: 26
-      spriteId: 7a33f5d4dd13fcc4ca97c21db0c97f65
+      spriteId: e0542d188aef6aa40ad3ef7c5c9a1433
     linkedCells: []
     parentIndex: -1
   platformSettings:

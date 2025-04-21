@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-class Level
+public class Level
 {
     List<System.Object[]> inputItems = new List<System.Object[]>();
     List<System.Object[]> requiredOutputItems = new List<System.Object[]>();

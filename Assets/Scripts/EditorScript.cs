@@ -24,7 +24,7 @@ public class EditorScript : MonoBehaviour
     public GameObject codeEditorButton;
     public GameObject levelSelectButton;
 
-    private GameObject textInput;
+    public GameObject textInput;
     public MenuButtonScript menuButtonScript;
 
     // CONTAINERS, formatted as [name, number of items]
@@ -37,8 +37,6 @@ public class EditorScript : MonoBehaviour
 
     void Start()
     {
-        textInput = transform.Find("Editor Text Input").gameObject;
-
         if (containers[0] == null || containers[1] == null || containers[2] == null || containers[3] == null)
         {
             Debug.LogError("Container not found.");
@@ -297,11 +295,30 @@ public class EditorScript : MonoBehaviour
             // add the number of items in arg1 to arg3
             command.Add("1");
         }   
+        RecipeCheck recipeCheck = new RecipeCheck();
+        System.Object[] craftedPotion = recipeCheck.CheckRecipe(cauldron.getItems());
 
-        // TODO: check if cauldron contains valid a valid recipie
+        if (craftedPotion[0] == null)
+        {
+            Debug.LogError("Cauldron does not contain a valid recipe.");
+            return;
+        }
 
         // TODO: create the potions and place them into arg1
-        Debug.LogError("BOT command not finsihed.");
+        string potionName = craftedPotion[0].ToString();
+        int itemAmount = (int)craftedPotion[1];
+        if (isContainerEmpty(containers[container1Number]))
+        {
+            containers[container1Number].setItem(potionName, itemAmount);
+            cauldron.Clear();
+        }
+        else
+        {
+            containers[container1Number].addToItem(itemAmount);
+            cauldron.Clear();
+        }
+
+        Debug.Log("BOT command ran: " + command[1] + ", " + potionName + ", " + itemAmount);
         return;
     }
 

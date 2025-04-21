@@ -10,10 +10,8 @@ public class MenuButtonScript : MonoBehaviour
     public GameObject codeEditorButton;
     public GameObject helpPanel;
 
-    void Start()
-    {
 
-    }
+    [ContextMenu("Open Editor")]
     public void openEditor()
     {
         // get the editor from the tag and call the open editor function

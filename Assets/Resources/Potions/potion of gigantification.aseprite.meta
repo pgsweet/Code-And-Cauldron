@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2cbb1f9c8c702e14aab628f9e9ec82c6
+guid: 7e57d3b1cbad0214eac20aa16b1c6175
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,10 +123,10 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Potion of x-ray vision
+  - name: potion of gigantification
     originalName: 
-    pivot: {x: 0.625, y: -2.7307694}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -135,7 +135,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 26
-    spriteID: 7b47fb9ad844b56408b1dbc7e1f9b22c
+    spriteID: 0f5a28ee3cbbefb43a199cf61157afa5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,13 +147,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -920675407
-    name: Potion of x-ray vision
+    guid: 1150130784
+    name: potion of gigantification
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Potion of x-ray vision
+    - name: Potion of Gigantification
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -161,7 +161,7 @@ ScriptedImporter:
         y: 71
         width: 16
         height: 26
-      spriteId: 7b47fb9ad844b56408b1dbc7e1f9b22c
+      spriteId: 0f5a28ee3cbbefb43a199cf61157afa5
     linkedCells: []
     parentIndex: -1
   platformSettings:

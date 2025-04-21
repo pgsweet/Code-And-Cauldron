@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7ea5ec80f5e689548bc6275abbf7358e
+guid: 834325dcde013b0408408a9502dab003
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,10 +123,10 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: potion of dragonification
+  - name: potion of shrinking
     originalName: 
-    pivot: {x: 0.625, y: -2.7307694}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
@@ -135,7 +135,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 26
-    spriteID: e0542d188aef6aa40ad3ef7c5c9a1433
+    spriteID: 38fa492f7a0930743ae2aae5832491a2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,13 +147,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1468421927
-    name: potion of dragonification
+    guid: -367274041
+    name: potion of shrinking
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: potion of dragonification
+    - name: Potion of Shrinking
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -161,7 +161,7 @@ ScriptedImporter:
         y: 71
         width: 16
         height: 26
-      spriteId: e0542d188aef6aa40ad3ef7c5c9a1433
+      spriteId: 38fa492f7a0930743ae2aae5832491a2
     linkedCells: []
     parentIndex: -1
   platformSettings:
