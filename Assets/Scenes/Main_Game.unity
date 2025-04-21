@@ -1517,7 +1517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -960, y: -540}
+  m_AnchoredPosition: {x: -959.99994, y: -540}
   m_SizeDelta: {x: -1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &421506953
@@ -1768,7 +1768,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.15
+  m_fontSize: 31.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6972,6 +6972,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &1313263430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5016788019158567840, guid: d642ad12c86e83b40909d3887033b823, type: 3}
+  m_PrefabInstance: {fileID: 1512566296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1341391202
 GameObject:
   m_ObjectHideFlags: 0
@@ -7743,7 +7754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -960, y: -540}
+  m_AnchoredPosition: {x: -959.99994, y: -540}
   m_SizeDelta: {x: -1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1471559181
@@ -7765,7 +7776,12 @@ MonoBehaviour:
   - {fileID: 1888661315}
   - {fileID: 291077604}
   - {fileID: 61174881}
+  - {fileID: 1835266702}
+  - {fileID: 1313263430}
   levelBackground: {fileID: 793395381}
+  inputScript: {fileID: 1030254115}
+  outputScript: {fileID: 1572507239}
+  editorScript: {fileID: 421506953}
 --- !u!1 &1488705082
 GameObject:
   m_ObjectHideFlags: 0
@@ -9237,6 +9253,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d642ad12c86e83b40909d3887033b823, type: 3}
+--- !u!114 &1835266702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5016788019158567840, guid: d642ad12c86e83b40909d3887033b823, type: 3}
+  m_PrefabInstance: {fileID: 1345851437}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1861858834
 PrefabInstance:
   m_ObjectHideFlags: 0
