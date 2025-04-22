@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class InputScript : MonoBehaviour
 {
     private List<System.Object[]> inputItems;
-    
     public GameObject inputText;
     public GameObject inputCount;
     public GameObject spriteContainer;
@@ -54,7 +53,7 @@ public class InputScript : MonoBehaviour
     {
         if (inputItems.Count == 0)
         {
-            Debug.LogError("No more input items.");
+            // Debug.LogError("No more input items.");
             spriteContainer.SetActive(false);
             inputText.SetActive(false);
             inputCount.SetActive(false);

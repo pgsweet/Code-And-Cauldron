@@ -2,19 +2,29 @@ using System.Collections.Generic;
 
 public class Level
 {
-    List<System.Object[]> inputItems = new List<System.Object[]>();
-    List<System.Object[]> requiredOutputItems = new List<System.Object[]>();
-    bool completed = false;
-    int score = 0;
-    int levelNum = 0;
-    List<string> dialogue = null;
+    private List<System.Object[]> inputItems = new List<System.Object[]>();
+    private List<System.Object[]> requiredOutputItems = new List<System.Object[]>();
+    private bool completed = false;
+    private int score = 0;
+    private int levelNum = 0;
+    private List<string> startingDialogue = null;
+    private List<string> endDialogue = null;
 
-    public Level(List<System.Object[]> inputItems, List<System.Object[]> requiredOutputItems, int levelNum, List<string> dialogue)
+    public Level(List<System.Object[]> inputItems, List<System.Object[]> requiredOutputItems, int levelNum, List<string> startDialogue, List<string> endDialogue)
     {
         this.inputItems = inputItems;
         this.requiredOutputItems = requiredOutputItems;
         this.levelNum = levelNum;
-        this.dialogue = dialogue;
+        this.startingDialogue = startDialogue;
+        this.endDialogue = endDialogue;
+    }
+
+    public Level(List<System.Object[]> inputItems, List<System.Object[]> requiredOutputItems, int levelNum, List<string> startDialogue)
+    {
+        this.inputItems = inputItems;
+        this.requiredOutputItems = requiredOutputItems;
+        this.levelNum = levelNum;
+        this.startingDialogue = startDialogue;
     }
 
     public Level(List<System.Object[]> inputItems, List<System.Object[]> requiredOutputItems, int levelNum)
@@ -24,9 +34,14 @@ public class Level
         this.levelNum = levelNum;
     }
 
-    public List<string> GetDialogue()
+    public List<string> getStartingDialogue()
     {
-        return dialogue;
+        return startingDialogue;
+    }
+
+    public List<string> getEndDialogue()
+    {
+        return endDialogue;
     }
 
     public int GetLevelNum()
@@ -64,25 +79,29 @@ public class Level
         this.score = score;
     }
 
-    public void SetInputItems(List<System.Object[]> inputItems)
-    {
-        this.inputItems = inputItems;
-    }
+    // public void SetInputItems(List<System.Object[]> inputItems)
+    // {
+    //     this.inputItems = inputItems;
+    // }
 
-    public void SetRequiredOutputItems(List<System.Object[]> requiredOutputItems)
-    {
-        this.requiredOutputItems = requiredOutputItems;
-    }
+    // public void SetRequiredOutputItems(List<System.Object[]> requiredOutputItems)
+    // {
+    //     this.requiredOutputItems = requiredOutputItems;
+    // }
 
-    public void SetLevelNum(int levelNum)
-    {
-        this.levelNum = levelNum;
-    }
+    // public void SetLevelNum(int levelNum)
+    // {
+    //     this.levelNum = levelNum;
+    // }
 
-    public void SetDialogue(List<string> dialogue)
-    {
-        this.dialogue = dialogue;
-    }
+    // public void SetDialogue(List<string> startingDialogue)
+    // {
+    //     this.startingDialogue = startingDialogue;
+    // }
 
+    // public void SetEndDialogue(List<string> endDialogue)
+    // {
+    //     this.endDialogue = endDialogue;
+    // }
 
 }

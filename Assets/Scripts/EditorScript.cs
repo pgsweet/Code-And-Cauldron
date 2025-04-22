@@ -33,6 +33,7 @@ public class EditorScript : MonoBehaviour
     public ContainerScript[] containers = new ContainerScript[4];
     public InputScript inputItems;
     public OutputScript outputScript;
+    public LevelSelectScript levelSelectScript;
 
 
     void Start()
@@ -71,12 +72,9 @@ public class EditorScript : MonoBehaviour
             return;
         }
 
+        levelSelectScript.resetLevel();
+
         List<List<string>> parsedCode = splitCode(rawCode);
-        // foreach (List<string> line in parsedCode)
-        // {
-        //     // Process each line of code here
-        //     Debug.Log(string.Join(",", line));
-        // }
         menuButtonScript.openEditor();
 
         StartCoroutine(parseCode(parsedCode));
@@ -169,6 +167,7 @@ public class EditorScript : MonoBehaviour
             // Debug script
             // Debug.Log(string.Join(",", line));
         }
+        outputScript.checkOutput();
     }
 
     private void movCommand(List<string> command)

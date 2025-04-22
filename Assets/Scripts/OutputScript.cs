@@ -8,7 +8,6 @@ using TMPro;
 
 public class OutputScript : MonoBehaviour
 {
-
     private List<System.Object[]> requiredItems = new List<System.Object[]>() {
         new System.Object[] {"Potion of Weightlessness", 1},
     };
@@ -17,6 +16,7 @@ public class OutputScript : MonoBehaviour
     public GameObject spriteContainer;
     public GameObject infoPanel;
     private List<System.Object[]> currentOutputItems = new List<System.Object[]>();
+    public LevelSelectScript LevelSelectScript;
 
     void Start()
     {
@@ -40,7 +40,6 @@ public class OutputScript : MonoBehaviour
         {
             enableInfoPanel();
         }
-        checkOutput();
     }
 
     public void setRequiredItems(List<System.Object[]> newRequiredItems)
@@ -83,7 +82,7 @@ public class OutputScript : MonoBehaviour
         outputCount.SetActive(true);
     }
 
-    private void checkOutput()
+    public void checkOutput()
     {
         bool goodOutput = true;
         string errorMessage = "";
@@ -98,13 +97,19 @@ public class OutputScript : MonoBehaviour
             {
                 goodOutput = false;
                 errorMessage = "Incorrect Output, expected: " + requiredItems[i][0].ToString() + " " + requiredItems[i][1].ToString() + " but got: " + currentOutputItems[i][0].ToString() + " " + currentOutputItems[i][1].ToString();
+                break;
                 // TODO: reset the level
             }
-            
         }
+        if (currentOutputItems.Count < requiredItems.Count)
+        {
+            goodOutput = false;
+            errorMessage = "Not enough output items, expected: " + requiredItems.Count + " but got: " + currentOutputItems.Count;
+        }
+
         if (goodOutput)
         {
-            Debug.Log("Correct Output so far");
+            LevelSelectScript.completedLevel();
         }
         else
         {
