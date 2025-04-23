@@ -1,46 +1,62 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using System.Linq;
 
 public class ContainerScript : MonoBehaviour
 {
-
     private string itemName = null;
     private int itemCount = 0;
 
     public GameObject numItemsText;
     public GameObject itemNameText;
+    public GameObject spriteContainer;
+    public GameObject infoPanel;
 
     void Start()
     {
-        gameObject.SetActive(false);
+        spriteContainer.SetActive(false);
         numItemsText.SetActive(false);
         itemNameText.SetActive(false);
+        infoPanel.SetActive(false);
     }
 
     void Update()
     {
-        
+
     }
 
     public void setItem(string newItemName, int newItemCount)
     {
         itemName = newItemName;
-        itemNameText.GetComponent<Text>().text = itemName;
         itemCount = newItemCount;
-        numItemsText.GetComponent<Text>().text = itemCount.ToString();
+        itemNameText.GetComponent<TMP_Text>().text = newItemName.Replace("_", " ");
+        numItemsText.GetComponent<Text>().text = newItemCount.ToString();
 
-        Sprite newSprite = Resources.Load<Sprite>("Items/" + itemName);
+        Sprite newSprite = Resources.Load<Sprite>("Items/" + newItemName);
         if (newSprite == null)
         {
-            Debug.LogError("Sprite not found: " + itemName);
-            return;
+            newSprite = Resources.Load<Sprite>("Potions/" + newItemName);
+            if (newSprite == null)
+            {
+                Debug.LogError("Sprite not found: " + newItemName);
+                return;
+            }
         }
-        gameObject.GetComponent<SpriteRenderer>().sprite = newSprite;
+        spriteContainer.GetComponent<SpriteRenderer>().sprite = newSprite;
 
-        gameObject.SetActive(true);
+        spriteContainer.SetActive(true);
         numItemsText.SetActive(true);
         itemNameText.SetActive(true);
+
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
+        }
     }
 
     public void addToItem(int count)
@@ -51,18 +67,24 @@ public class ContainerScript : MonoBehaviour
         {
             removeItem();
         }
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
+        }
     }
 
     public void removeItem()
     {
-        gameObject.SetActive(false);
+        spriteContainer.SetActive(false);
         numItemsText.SetActive(false);
-        gameObject.GetComponent<SpriteRenderer>().sprite = null;
+        itemNameText.SetActive(false);
+
+        spriteContainer.GetComponent<SpriteRenderer>().sprite = null;
         itemName = null;
-        itemNameText.GetComponent<Text>().text = "Empty";
+        itemNameText.GetComponent<TMP_Text>().text = "Empty";
         itemCount = 0;
         numItemsText.GetComponent<Text>().text = "0";
-        itemNameText.SetActive(false);
+
     }
 
     public string getItemName()
@@ -76,5 +98,28 @@ public class ContainerScript : MonoBehaviour
     }
 
 
+    public void enableInfoPanel()
+    {
+        string newText = $"Name: {gameObject.name.ToLower().Replace(" ", "")}\nContains:\n";
+        if (itemName != null)
+        {
+            newText += $"{itemCount} {itemName.Replace("_", " ")}(s)";
+        }
+        else
+        {
+            newText += "Nothing";
+        }
+
+
+        Transform[] children = infoPanel.GetComponentsInChildren<Transform>(true);
+        children[1].gameObject.GetComponent<TMP_Text>().text = newText;
+
+        infoPanel.SetActive(true);
+    }
+
+    public void disableInfoPanel()
+    {
+        infoPanel.SetActive(false);
+    }
 
 }
