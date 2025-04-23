@@ -8,9 +8,7 @@ using TMPro;
 
 public class OutputScript : MonoBehaviour
 {
-    private List<System.Object[]> requiredItems = new List<System.Object[]>() {
-        new System.Object[] {"Potion of Weightlessness", 1},
-    };
+    private List<System.Object[]> requiredItems = new List<System.Object[]>();
     public GameObject outputText;
     public GameObject outputCount;
     public GameObject spriteContainer;
@@ -18,18 +16,12 @@ public class OutputScript : MonoBehaviour
     private List<System.Object[]> currentOutputItems = new List<System.Object[]>();
     public LevelSelectScript LevelSelectScript;
 
-    void Start()
+    public void startGame()
     {
         spriteContainer.SetActive(false);
         outputText.SetActive(false);
         outputCount.SetActive(false);
         infoPanel.SetActive(false);
-    }
-
-
-    void Update()
-    {
-        
     }
 
     public void recieveOutput(System.Object[] item)

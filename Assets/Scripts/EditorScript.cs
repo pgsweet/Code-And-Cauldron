@@ -36,8 +36,9 @@ public class EditorScript : MonoBehaviour
     public LevelSelectScript levelSelectScript;
 
 
-    void Start()
+    public void startGame()
     {
+        // Debug.Log("Editor Script Initialized");
         if (containers[0] == null || containers[1] == null || containers[2] == null || containers[3] == null)
         {
             Debug.LogError("Container not found.");

@@ -19,10 +19,11 @@ public class LevelSelectScript : MonoBehaviour
     public DialogScript dialogScript;
 
 
-    void Start()
+    public void startGame()
     {
         initalizeLevels();
         updateButtons();
+        setLevel(0);
     }
 
     private void updateButtons()
@@ -81,7 +82,7 @@ public class LevelSelectScript : MonoBehaviour
             Debug.LogError("Failed to parse level number from button text.");
             return;
         }
-        Debug.Log($"Switching to level {levelNum}");
+        // Debug.Log($"Switching to level {levelNum}");
         
         if (levels.Count <= levelNum)
         {
@@ -90,7 +91,8 @@ public class LevelSelectScript : MonoBehaviour
         }
 
         setLevel(levelNum);
-        currentLevel = levelNum;
+
+        // TODO: enable the code editor and then minimize it
     }
 
     public void resetLevel()
@@ -100,21 +102,21 @@ public class LevelSelectScript : MonoBehaviour
 
     private void setLevel(int levelNum)
     {
+        Debug.Log("Set Level");
         if (levelNum == -1)
         {
             Debug.LogError("No Level Selected");
             return;
         }
 
-        // TODO: for some reason this does not get the input items whenever the level is RESET
-        List<System.Object[]> inputItems = levels[levelNum].GetInputItems();
-        Debug.Log($"Input items: {inputItems.Count}");
-        inputScript.setInput(levels[levelNum].GetInputItems());
-        outputScript.setRequiredItems(levels[levelNum].GetRequiredOutputItems());
+        inputScript.setInput(new List<System.Object[]>(levels[levelNum].GetInputItems()));
+        outputScript.setRequiredItems(new List<System.Object[]>(levels[levelNum].GetRequiredOutputItems()));
     
         if (levelNum != currentLevel)
         {
-            dialogScript.setDialog(levels[levelNum].getStartingDialogue());
+            dialogScript.setDialog(new List<string>(levels[levelNum].getStartingDialogue()));
+            // TODO: clear the editor
+            currentLevel = levelNum;
         }
 
         editorScript.clearAllContainers();
@@ -126,11 +128,12 @@ public class LevelSelectScript : MonoBehaviour
         levels[currentLevel].SetCompleted(true);
         Debug.Log($"Level {currentLevel} completed!");
         updateButtons();
-        dialogScript.setDialog(levels[currentLevel].getEndDialogue());
+        dialogScript.setDialog(new List<string>(levels[currentLevel].getEndDialogue()));
     }
 
     public void initalizeLevels()
     {
+        // Level 0
         levels.Add(new Level(
             new List<System.Object[]>() // input items
             {
@@ -153,7 +156,34 @@ public class LevelSelectScript : MonoBehaviour
             },
             new List<string>() // ending dialog
             {
-                "Great job! You've completed the first level!",
+                "Great job! You've completed level 0!",
+                "Now you can move on to the next level, navigate to the level select screen and select the next level."
+            }
+        ));
+
+        // Level 1
+        levels.Add(new Level(
+            new List<System.Object[]>() // input items
+            {
+                new System.Object[] { "Amethyst", 1, -1 },
+                new System.Object[] { "Ruby", 1, -1 },
+            },
+            new List<System.Object[]>() // output items
+            {
+                new System.Object[] { "Ruby", 1 },
+                new System.Object[] { "Amethyst", 1 },
+            },
+            1, // level num
+            new List<string>() // starting dialog
+            {
+                "Welcome to level 1!",
+                "In this level, you will learn how to use the INP and OUT commands with multiple items.",
+                "You will need to input both the Amethyst and Ruby into the cauldron.",
+                "Then, you will need to output both items from the cauldron. Make sure to take note of the order of the items!",
+            },
+            new List<string>() // ending dialog
+            {
+                "Great job! You've completed level 1!",
                 "Now you can move on to the next level, navigate to the level select screen and select the next level."
             }
         ));

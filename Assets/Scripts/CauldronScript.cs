@@ -7,7 +7,7 @@ public class CauldronScript : MonoBehaviour
 
     private List<System.Object[]> currentItems = new List<System.Object[]>();
 
-    void Start()
+    public void startGame()
     {
         infoPanel.SetActive(false);
     }

@@ -8,7 +8,7 @@ public class DialogScript : MonoBehaviour
     private int currentLineIndex = -1;
     public GameObject dialogText;
 
-    void Start()
+    public void startGame()
     {
         gameObject.SetActive(false);
     }
