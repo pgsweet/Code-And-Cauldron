@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.CodeEditor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,6 +18,7 @@ public class LevelSelectScript : MonoBehaviour
     public OutputScript outputScript;
     public EditorScript editorScript;
     public DialogScript dialogScript;
+    public MenuButtonScript menuButtonScript;
 
 
     public void startGame()
@@ -91,8 +93,6 @@ public class LevelSelectScript : MonoBehaviour
         }
 
         setLevel(levelNum);
-
-        // TODO: enable the code editor and then minimize it
     }
 
     public void resetLevel()
@@ -102,7 +102,6 @@ public class LevelSelectScript : MonoBehaviour
 
     private void setLevel(int levelNum)
     {
-        Debug.Log("Set Level");
         if (levelNum == -1)
         {
             Debug.LogError("No Level Selected");
@@ -115,18 +114,22 @@ public class LevelSelectScript : MonoBehaviour
         if (levelNum != currentLevel)
         {
             dialogScript.setDialog(new List<string>(levels[levelNum].getStartingDialogue()));
-            // TODO: clear the editor
+            editorScript.clearCode();
             currentLevel = levelNum;
         }
 
         editorScript.clearAllContainers();
+        if (toggled){
+            menuButtonScript.openEditor();
+        }
+        menuButtonScript.enableCodeEditor();
     }
 
 
     public void completedLevel()
     {
         levels[currentLevel].SetCompleted(true);
-        Debug.Log($"Level {currentLevel} completed!");
+        // Debug.Log($"Level {currentLevel} completed!");
         updateButtons();
         dialogScript.setDialog(new List<string>(levels[currentLevel].getEndDialogue()));
     }
@@ -184,8 +187,53 @@ public class LevelSelectScript : MonoBehaviour
             new List<string>() // ending dialog
             {
                 "Great job! You've completed level 1!",
-                "Now you can move on to the next level, navigate to the level select screen and select the next level."
+                "Next up we'll learn how to craft a potion!"
             }
         ));
+
+        // Level 2
+        levels.Add(new Level(
+            new List<System.Object[]>() // input items
+            {
+                new System.Object[] {"Feather", 2}
+            },
+            new List<System.Object[]>() // output items
+            {
+                new System.Object[] {"Potion of Weightlessness", 1}
+            },
+            2, // level num
+            new List<string>() // starting dialog
+            {
+                "Now that you've learned how to input and output items, lets talk about crafting potions.",
+                "the BOT command is used to bottle all ingredients in the cauldron!",
+                "You can MOV command to move items around, either from one container to another, or into the cauldron!",
+                "Input the feathers, move them into the cauldron, bottle the potion, then output the potion"
+            },
+            new List<string>() // ending dialog
+            {
+                "Great work apprentice! There's only a few more commands left for you to master.",
+                "Navigate on over to the next level to learn about them."
+            }
+        ));
+
+        // levels.Add(new Level(
+        //     new List<System.Object[]>() // input items
+        //     {
+                
+        //     },
+        //     new List<System.Object[]>() // output items
+        //     {
+                
+        //     },
+        //     -1, // level num
+        //     new List<string>() // starting dialog
+        //     {
+                
+        //     },
+        //     new List<string>() // ending dialog
+        //     {
+                
+        //     }
+        // ));
     }
 }

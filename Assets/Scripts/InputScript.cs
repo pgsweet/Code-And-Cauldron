@@ -70,7 +70,7 @@ public class InputScript : MonoBehaviour
     {
         if (inputItems.Count == 0)
         {
-            Debug.LogError("No more input items.");
+            // Debug.LogError("No more input items.");
             return null;
         }
         System.Object[] nextItem = inputItems[0];

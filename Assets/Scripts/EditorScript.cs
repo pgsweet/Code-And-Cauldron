@@ -38,7 +38,6 @@ public class EditorScript : MonoBehaviour
 
     public void startGame()
     {
-        // Debug.Log("Editor Script Initialized");
         if (containers[0] == null || containers[1] == null || containers[2] == null || containers[3] == null)
         {
             Debug.LogError("Container not found.");
@@ -76,7 +75,7 @@ public class EditorScript : MonoBehaviour
         levelSelectScript.resetLevel();
 
         List<List<string>> parsedCode = splitCode(rawCode);
-        menuButtonScript.openEditor();
+        // menuButtonScript.openEditor();
 
         StartCoroutine(parseCode(parsedCode));
     }

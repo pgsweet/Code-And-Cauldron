@@ -7657,9 +7657,9 @@ MonoBehaviour:
     mov <container> <container> <optional num>\n\t- move specified number of items
     from the first container to the second\n- out <container> <optional num>\n\t-
     moves the specified amount of items from the container to the output\n- bot <container>\n\t-
-    bottles the items and places the potion in the specified container\n\tNOT IMPLEMENTED\n-
-    spl \n\t- casts the spell in the cauldron\n\tNOT IMPLEMENTED\n- clr <container>\n\t-
-    clears the items in the specified container"
+    bottles the items and places the potion in the specified container\n- spl \n\t-
+    casts the spell in the cauldron\n\tNOT IMPLEMENTED\n- clr <container>\n\t- clears
+    the items in the specified container"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8396,6 +8396,7 @@ MonoBehaviour:
   outputScript: {fileID: 1572507239}
   editorScript: {fileID: 421506953}
   dialogScript: {fileID: 1026455425}
+  menuButtonScript: {fileID: 784411601}
 --- !u!1 &1488705082
 GameObject:
   m_ObjectHideFlags: 0

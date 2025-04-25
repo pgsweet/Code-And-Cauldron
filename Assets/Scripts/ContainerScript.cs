@@ -58,7 +58,6 @@ public class ContainerScript : MonoBehaviour
     {
         itemCount += count;
         numItemsText.GetComponent<Text>().text = itemCount.ToString();
-        Debug.Log(itemCount);
         if (itemCount <= 0)
         {
             //Debug.Log("removing item");
