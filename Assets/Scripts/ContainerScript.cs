@@ -17,17 +17,12 @@ public class ContainerScript : MonoBehaviour
     public GameObject spriteContainer;
     public GameObject infoPanel;
 
-    void Start()
+    public void startGame()
     {
         spriteContainer.SetActive(false);
         numItemsText.SetActive(false);
         itemNameText.SetActive(false);
         infoPanel.SetActive(false);
-    }
-
-    void Update()
-    {
-
     }
 
     public void setItem(string newItemName, int newItemCount)
@@ -65,6 +60,7 @@ public class ContainerScript : MonoBehaviour
         numItemsText.GetComponent<Text>().text = itemCount.ToString();
         if (itemCount <= 0)
         {
+            //Debug.Log("removing item");
             removeItem();
         }
         if (infoPanel.activeSelf)
@@ -79,7 +75,7 @@ public class ContainerScript : MonoBehaviour
         numItemsText.SetActive(false);
         itemNameText.SetActive(false);
 
-        spriteContainer.GetComponent<SpriteRenderer>().sprite = null;
+        spriteContainer.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("missing");
         itemName = null;
         itemNameText.GetComponent<TMP_Text>().text = "Empty";
         itemCount = 0;

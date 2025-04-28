@@ -33,9 +33,10 @@ public class EditorScript : MonoBehaviour
     public ContainerScript[] containers = new ContainerScript[4];
     public InputScript inputItems;
     public OutputScript outputScript;
+    public LevelSelectScript levelSelectScript;
 
 
-    void Start()
+    public void startGame()
     {
         if (containers[0] == null || containers[1] == null || containers[2] == null || containers[3] == null)
         {
@@ -71,13 +72,10 @@ public class EditorScript : MonoBehaviour
             return;
         }
 
+        levelSelectScript.resetLevel();
+
         List<List<string>> parsedCode = splitCode(rawCode);
-        // foreach (List<string> line in parsedCode)
-        // {
-        //     // Process each line of code here
-        //     Debug.Log(string.Join(",", line));
-        // }
-        menuButtonScript.openEditor();
+        // menuButtonScript.openEditor();
 
         StartCoroutine(parseCode(parsedCode));
     }
@@ -169,8 +167,8 @@ public class EditorScript : MonoBehaviour
             // Debug script
             // Debug.Log(string.Join(",", line));
         }
+        outputScript.checkOutput();
     }
-
 
     private void movCommand(List<string> command)
     {
@@ -259,7 +257,6 @@ public class EditorScript : MonoBehaviour
         Debug.Log($"MOV command ran: {command[1]}, {command[2]}, {numItemsToMove}");
     }
 
-// TODO:
     private void botCommand(List<string> command)
     {
         if (command.Count() < 2)
@@ -304,7 +301,6 @@ public class EditorScript : MonoBehaviour
             return;
         }
 
-        // TODO: create the potions and place them into arg1
         string potionName = craftedPotion[0].ToString();
         int itemAmount = (int)craftedPotion[1];
         if (isContainerEmpty(containers[container1Number]))
@@ -500,6 +496,15 @@ public class EditorScript : MonoBehaviour
     private bool isSameItem(ContainerScript container1, ContainerScript container2)
     {
         return container1.getItemName() == container2.getItemName();
+    }
+
+    public void clearAllContainers()
+    {
+        for (int i = 0; i < containers.Count(); i++)
+        {
+            containers[i].removeItem();
+        }
+        cauldron.Clear();
     }
 
 }

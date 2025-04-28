@@ -6,39 +6,31 @@ using UnityEngine.UI;
 
 public class InputScript : MonoBehaviour
 {
-    private List<System.Object[]> inputItems;
-    
+    private List<System.Object[]> inputItems = new List<System.Object[]>();
     public GameObject inputText;
     public GameObject inputCount;
     public GameObject spriteContainer;
     public GameObject infoPanel;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void startGame()
     {
         spriteContainer.SetActive(false);
         inputText.SetActive(false);
         inputCount.SetActive(false);
         infoPanel.SetActive(false);
-
-        // TEMP DEBUG CODE
-        setInput(new List<System.Object[]> {
-            new System.Object[] {"Feather", 2, -1},
-            new System.Object[] {"Feather", 2, -1}
-        });
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void setInput(List<System.Object[]> newInputItems)
     {
         inputItems = newInputItems;
         
         setFields();
+
+        if (infoPanel.activeSelf)
+        {
+            enableInfoPanel();
+        }
 
         spriteContainer.SetActive(true);
         inputText.SetActive(true);
@@ -49,7 +41,10 @@ public class InputScript : MonoBehaviour
     {
         if (inputItems.Count == 0)
         {
-            Debug.LogError("No more input items.");
+            // Debug.LogError("No more input items.");
+            spriteContainer.GetComponent<SpriteRenderer>().sprite = null;
+            inputText.GetComponent<TMP_Text>().text = "Empty";
+            inputCount.GetComponent<Text>().text = "0";
             spriteContainer.SetActive(false);
             inputText.SetActive(false);
             inputCount.SetActive(false);
@@ -75,7 +70,7 @@ public class InputScript : MonoBehaviour
     {
         if (inputItems.Count == 0)
         {
-            Debug.LogError("No more input items.");
+            // Debug.LogError("No more input items.");
             return null;
         }
         System.Object[] nextItem = inputItems[0];
@@ -85,6 +80,7 @@ public class InputScript : MonoBehaviour
         {
             enableInfoPanel();
         }
+
         return nextItem;
     }
 

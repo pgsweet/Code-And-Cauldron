@@ -1,4 +1,4 @@
-# Possible commands
+# Commands:
 
 #### <u>mov \<arg1> \<arg2> \<arg3></u>
 
