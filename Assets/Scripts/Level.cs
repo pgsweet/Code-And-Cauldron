@@ -79,29 +79,4 @@ public class Level
         this.score = score;
     }
 
-    // public void SetInputItems(List<System.Object[]> inputItems)
-    // {
-    //     this.inputItems = inputItems;
-    // }
-
-    // public void SetRequiredOutputItems(List<System.Object[]> requiredOutputItems)
-    // {
-    //     this.requiredOutputItems = requiredOutputItems;
-    // }
-
-    // public void SetLevelNum(int levelNum)
-    // {
-    //     this.levelNum = levelNum;
-    // }
-
-    // public void SetDialogue(List<string> startingDialogue)
-    // {
-    //     this.startingDialogue = startingDialogue;
-    // }
-
-    // public void SetEndDialogue(List<string> endDialogue)
-    // {
-    //     this.endDialogue = endDialogue;
-    // }
-
 }

@@ -168,21 +168,21 @@ public class LevelSelectScript : MonoBehaviour
         levels.Add(new Level(
             new List<System.Object[]>() // input items
             {
-                new System.Object[] { "Amethyst", 1, -1 },
-                new System.Object[] { "Ruby", 1, -1 },
+                new System.Object[] { "Mushroom", 1, -1 },
+                new System.Object[] { "Goblin_eye", 1, -1 },
             },
             new List<System.Object[]>() // output items
             {
-                new System.Object[] { "Ruby", 1 },
-                new System.Object[] { "Amethyst", 1 },
+                new System.Object[] { "Goblin_eye", 1 },
+                new System.Object[] { "Mushroom", 1 },
             },
             1, // level num
             new List<string>() // starting dialog
             {
                 "Welcome to level 1!",
                 "In this level, you will learn how to use the INP and OUT commands with multiple items.",
-                "You will need to input both the Amethyst and Ruby into the cauldron.",
-                "Then, you will need to output both items from the cauldron. Make sure to take note of the order of the items!",
+                "Input both items and then send them to the output.",
+                "But make sure to pay attention to the order of the output!",
             },
             new List<string>() // ending dialog
             {
@@ -213,6 +213,31 @@ public class LevelSelectScript : MonoBehaviour
             {
                 "Great work apprentice! There's only a few more commands left for you to master.",
                 "Navigate on over to the next level to learn about them."
+            }
+        ));
+
+        // Level 3
+        levels.Add(new Level(
+            new List<System.Object[]>() // input items
+            {
+                new System.Object[] {"Emerald", 2},
+                new System.Object[] {"Green_Mushroom", 2}
+            },
+            new List<System.Object[]>() // output items
+            {
+                new System.Object[] {"Potion of Invisibility", 1}
+            },
+            3, // level num
+            new List<string>() // starting dialog
+            {
+                "Now lets talk about some extra arguments in some of the commands.",
+                "The MOV command actually takes in 3 arguments, the first two are containers, and the third is the number of items to move.",
+                "By default, it will move every item, thats why you havent noticed it yet.",
+                "Try crafting a Potion of Invisibility with the input items, don't forget to have the exact number of items in the cauldron!"
+            },
+            new List<string>() // ending dialog
+            {
+                "Great work! The OUT command also has this extra argument, It may come in handy in the future..."
             }
         ));
 
