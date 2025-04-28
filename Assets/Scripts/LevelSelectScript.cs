@@ -136,7 +136,7 @@ public class LevelSelectScript : MonoBehaviour
 
     public void initalizeLevels()
     {
-        // Level 0
+        // Level 0 input and output
         levels.Add(new Level(
             new List<System.Object[]>() // input items
             {
@@ -164,7 +164,7 @@ public class LevelSelectScript : MonoBehaviour
             }
         ));
 
-        // Level 1
+        // Level 1 different output order
         levels.Add(new Level(
             new List<System.Object[]>() // input items
             {
@@ -191,7 +191,7 @@ public class LevelSelectScript : MonoBehaviour
             }
         ));
 
-        // Level 2
+        // Level 2 potion crafting
         levels.Add(new Level(
             new List<System.Object[]>() // input items
             {
@@ -216,7 +216,7 @@ public class LevelSelectScript : MonoBehaviour
             }
         ));
 
-        // Level 3
+        // Level 3 mov command num of items
         levels.Add(new Level(
             new List<System.Object[]>() // input items
             {
@@ -241,24 +241,109 @@ public class LevelSelectScript : MonoBehaviour
             }
         ));
 
-        // levels.Add(new Level(
-        //     new List<System.Object[]>() // input items
-        //     {
-                
-        //     },
-        //     new List<System.Object[]>() // output items
-        //     {
-                
-        //     },
-        //     -1, // level num
-        //     new List<string>() // starting dialog
-        //     {
-                
-        //     },
-        //     new List<string>() // ending dialog
-        //     {
-                
-        //     }
-        // ));
+        // Level 4 clearing containers
+        levels.Add(new Level(
+            new List<System.Object[]>() // input items
+            {
+                new System.Object[] {"Feather", 3},
+                new System.Object[] {"Spider", 2},
+                new System.Object[] {"Ruby", 5},
+                new System.Object[] {"Dragon_blood", 1},
+                new System.Object[] {"Goblin_Eye", 1},
+                new System.Object[] {"Red_Mushroom", 2}
+            },
+            new List<System.Object[]>() // output items
+            {
+                new System.Object[] {"Potion of Gigantification", 1}
+            },
+            4, // level num
+            new List<string>() // starting dialog
+            {
+                "It seems like I accidently left some random items in the input...",
+                "You can use the CLR command to clear the items in a container, just specify what container to clear and it'll empty it!"
+            },
+            new List<string>() // ending dialog
+            {
+                "Sorry about that mess... hopefully it won't happen again"
+            }
+        ));
+
+        // Level 5 Combining items
+        levels.Add(new Level(
+            new List<System.Object[]>() // input items
+            {
+                new System.Object[] {"Blue_Mushroom", 1},
+                new System.Object[] {"Spider", 1},
+                new System.Object[] {"Blue_Mushroom", 1}
+            },
+            new List<System.Object[]>() // output items
+            {
+                new System.Object[] {"Potion of Shrinking"}
+            },
+            5, // level num
+            new List<string>() // starting dialog
+            {
+                "It seems like the mushrooms got split into two piles, but they'll need to be combined before they go into the cauldron",
+                "You can use the MOV command to combine them into a singular pile"
+            },
+            new List<string>() // ending dialog
+            {
+                "Wow youre getting the hang of this"
+            }
+        ));
+
+        // Level 6 Batch crafting
+        levels.Add(new Level(
+            new List<System.Object[]>() // input items
+            {
+                new System.Object[] {"Black_Feather", 6},
+                new System.Object[] {"Dragon_Blood", 3},
+                new System.Object[] {"Ruby", 3}
+            },
+            new List<System.Object[]>() // output items
+            {
+                new System.Object[] {"Potion of Dragonification", 3}
+            },
+            6, // level num
+            new List<string>() // starting dialog
+            {
+                "I'm gonna need a few Potions of Dragonification, you can batch craft them like you were crafting any other potion"
+            },
+            new List<string>() // ending dialog
+            {
+                "Batch crafting can be a huge time saver, try to use it whenever possible"
+            }
+        ));
+
+        // Level 7 Final test
+        levels.Add(new Level(
+            new List<System.Object[]>() // input items
+            {
+                new System.Object[] {"Goblin_Eye", 1},
+                new System.Object[] {"Green_Mushroom", 1},
+                new System.Object[] {"Feather", 2},
+                new System.Object[] {"Spider", 2},
+                new System.Object[] {"Feather", 2},
+                new System.Object[] {"Amethyst", 1},
+                new System.Object[] {"Bone", 1},
+                new System.Object[] {"Feather", 1}
+            },
+            new List<System.Object[]>() // output items
+            {
+                new System.Object[] {"Potion of X-Ray Vision", 1},
+                new System.Object[] {"Potion of Love", 1},
+                new System.Object[] {"Potion of Weightlessness", 2}
+            },
+            7, // level num
+            new List<string>() // starting dialog
+            {
+                "Here's your first real test, I have a lot of potions I need so lets see how you can handle this..."
+            },
+            new List<string>() // ending dialog
+            {
+                "Impressive!",
+                "You handled that really well, I see a bright future for you..."
+            }
+        ));
     }
 }
