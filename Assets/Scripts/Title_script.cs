@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Title_script : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class Title_script : MonoBehaviour
             timer = 0f;
             currentImageIndex = (currentImageIndex + 1) % images.Length;
             spriteRenderer.sprite = images[currentImageIndex];
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            SceneManager.LoadScene("Main_Game");
         }
     }
 }
