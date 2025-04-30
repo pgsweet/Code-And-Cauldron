@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Unity.CodeEditor;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -34,6 +35,11 @@ public class LevelSelectScript : MonoBehaviour
         {
             if (i < levels.Count)
             {
+                if (levels[i].IsCompleted())
+                {
+                    levelButtons[i].GetComponent<Image>().color = new Color(0, 255, 0);
+                }
+
                 if (i == 0)
                 {
                     levelButtons[i].interactable = true;
@@ -88,9 +94,8 @@ public class LevelSelectScript : MonoBehaviour
         
         if (levels.Count <= levelNum)
         {
-            // TODO: generate new levels
-            Debug.LogError($"Level {levelNum} does not exist in the levels list.");
-            return;
+            Debug.Log("No level found... Creating a new level");
+            generateNewLevel();
         }
 
         setLevel(levelNum);
@@ -127,7 +132,7 @@ public class LevelSelectScript : MonoBehaviour
     }
 
 
-    private void completedLevel()
+    public void completedLevel()
     {
         levels[currentLevel].SetCompleted(true);
         // Debug.Log($"Level {currentLevel} completed!");
@@ -139,9 +144,63 @@ public class LevelSelectScript : MonoBehaviour
     {
         System.Random rnd = new System.Random();
         RecipeCheck recipeCheck = new RecipeCheck();
-        System.Object[] randomPotion = recipeCheck.getRandomPotion();
         // generate 2-4 potions and shffle the required input around by 1-2 positions (small chance)
-        // have a chance to reqiure multiple potions, 
+        // have a chance to reqiure multiple potions
+
+        int newPotionsToMake = rnd.Next(2,4);
+        List<List<System.Object[]>> newInputItems = new List<List<System.Object[]>>();
+        List<System.Object[]> newPotionNames = new List<System.Object[]>();
+        for (int i = 0; i < newPotionsToMake; i++)
+        {
+            System.Object[] p = recipeCheck.getRandomPotion();
+            newInputItems.Add((List<System.Object[]>)p[1]);
+            newPotionNames.Add(new System.Object[] {(string)p[0], 1});
+        }
+
+        List<System.Object[]> allInputItems = new List<System.Object[]>();
+        foreach (List<System.Object[]> items in newInputItems)
+        {
+            foreach (System.Object[] item in items)
+            {
+                double chance = rnd.NextDouble();
+                if (allInputItems.Count == 0)
+                {
+                    allInputItems.Add(item);
+                }
+                else if (allInputItems.Count <= 3)
+                {
+                    if (chance <= 0.4)
+                    {
+                        allInputItems.Insert(allInputItems.Count-2, item);
+                    }
+                    else{
+                        allInputItems.Add(item);
+                    }
+                }
+                else
+                {
+                    if (chance <= 0.2)
+                    {
+                        allInputItems.Insert(allInputItems.Count-3, item);
+                    }
+                    else if (chance <= 0.6)
+                    {
+                        allInputItems.Insert(allInputItems.Count-2, item);
+                    }
+                    else
+                    {
+                        allInputItems.Add(item);
+                    }
+                }
+            }
+        }
+
+        Level newLevel = new Level(
+            allInputItems, newPotionNames, levels.Count
+        );
+
+        levels.Add(newLevel);
+
     }
 
     private void initalizeLevels()
