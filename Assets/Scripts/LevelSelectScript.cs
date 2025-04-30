@@ -55,7 +55,7 @@ public class LevelSelectScript : MonoBehaviour
         }
     }
 
-    public void AddLevel(Level level)
+    private void AddLevel(Level level)
     {
         levels.Add(level);
     }
@@ -88,6 +88,7 @@ public class LevelSelectScript : MonoBehaviour
         
         if (levels.Count <= levelNum)
         {
+            // TODO: generate new levels
             Debug.LogError($"Level {levelNum} does not exist in the levels list.");
             return;
         }
@@ -126,7 +127,7 @@ public class LevelSelectScript : MonoBehaviour
     }
 
 
-    public void completedLevel()
+    private void completedLevel()
     {
         levels[currentLevel].SetCompleted(true);
         // Debug.Log($"Level {currentLevel} completed!");
@@ -134,7 +135,16 @@ public class LevelSelectScript : MonoBehaviour
         dialogScript.setDialog(new List<string>(levels[currentLevel].getEndDialogue()));
     }
 
-    public void initalizeLevels()
+    private void generateNewLevel()
+    {
+        System.Random rnd = new System.Random();
+        RecipeCheck recipeCheck = new RecipeCheck();
+        System.Object[] randomPotion = recipeCheck.getRandomPotion();
+        // generate 2-4 potions and shffle the required input around by 1-2 positions (small chance)
+        // have a chance to reqiure multiple potions, 
+    }
+
+    private void initalizeLevels()
     {
         // Level 0 input and output
         levels.Add(new Level(

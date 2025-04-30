@@ -90,7 +90,6 @@ public class OutputScript : MonoBehaviour
                 goodOutput = false;
                 errorMessage = "Incorrect Output, expected: " + requiredItems[i][0].ToString() + " " + requiredItems[i][1].ToString() + " but got: " + currentOutputItems[i][0].ToString() + " " + currentOutputItems[i][1].ToString();
                 break;
-                // TODO: reset the level
             }
         }
         if (currentOutputItems.Count < requiredItems.Count)
