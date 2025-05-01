@@ -31,6 +31,7 @@ public class LevelSelectScript : MonoBehaviour
 
     private void updateButtons()
     {
+        // TODO: levels after level 7 arent being clicked
         for (int i = 0; i < levelButtons.Count; i++)
         {
             if (i < levels.Count)
@@ -61,11 +62,6 @@ public class LevelSelectScript : MonoBehaviour
         }
     }
 
-    private void AddLevel(Level level)
-    {
-        levels.Add(level);
-    }
-
     public void toggleLevelSelect()
     {
         int moveDirection = -1;
@@ -90,7 +86,7 @@ public class LevelSelectScript : MonoBehaviour
             Debug.LogError("Failed to parse level number from button text.");
             return;
         }
-        // Debug.Log($"Switching to level {levelNum}");
+        Debug.Log($"Switching to level {levelNum}");
         
         if (levels.Count <= levelNum)
         {
@@ -210,7 +206,6 @@ public class LevelSelectScript : MonoBehaviour
             new List<System.Object[]>() // input items
             {
                 new System.Object[] { "Amethyst", 1, -1 },
-
             },
             new List<System.Object[]>() // output items
             {
@@ -232,6 +227,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Now you can move on to the next level, navigate to the level select screen and select the next level."
             }
         ));
+        levels[0].SetCompleted(true);
 
         // Level 1 different output order
         levels.Add(new Level(
@@ -259,6 +255,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Next up we'll learn how to craft a potion!"
             }
         ));
+        levels[1].SetCompleted(true);
 
         // Level 2 potion crafting
         levels.Add(new Level(
@@ -284,6 +281,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Navigate on over to the next level to learn about them."
             }
         ));
+        levels[2].SetCompleted(true);
 
         // Level 3 mov command num of items
         levels.Add(new Level(
@@ -309,6 +307,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Great work! The OUT command also has this extra argument, It may come in handy in the future..."
             }
         ));
+        levels[3].SetCompleted(true);
 
         // Level 4 clearing containers
         levels.Add(new Level(
@@ -336,6 +335,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Sorry about that mess... hopefully it won't happen again"
             }
         ));
+        levels[4].SetCompleted(true);
 
         // Level 5 Combining items
         levels.Add(new Level(
@@ -360,6 +360,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Wow youre getting the hang of this"
             }
         ));
+        levels[5].SetCompleted(true);
 
         // Level 6 Batch crafting
         levels.Add(new Level(
@@ -383,6 +384,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Batch crafting can be a huge time saver, try to use it whenever possible"
             }
         ));
+        levels[6].SetCompleted(true);
 
         // Level 7 Final test
         levels.Add(new Level(
@@ -414,5 +416,6 @@ public class LevelSelectScript : MonoBehaviour
                 "You handled that really well, I see a bright future for you..."
             }
         ));
+        levels[7].SetCompleted(true);
     }
 }
