@@ -163,7 +163,7 @@ public class EditorScript : MonoBehaviour
                     break;
             }
 
-            inputItems.decrementInputLife();
+            // inputItems.decrementInputLife();
 
             if (error != null) {
                 errorWindowScript.setErrorMessage(lineCount, error);

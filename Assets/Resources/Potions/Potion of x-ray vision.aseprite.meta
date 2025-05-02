@@ -153,7 +153,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Potion of x-ray vision
+    - name: Potion of X-Ray Vision
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
