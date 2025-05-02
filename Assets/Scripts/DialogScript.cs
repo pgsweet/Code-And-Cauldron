@@ -35,6 +35,11 @@ public class DialogScript : MonoBehaviour
 
     public void openDialog()
     {
+        if (dialogLines == null)
+        {
+            return;
+        }
+        
         if (dialogLines.Count > 0)
         {
             dialogText.GetComponent<TMPro.TMP_Text>().text = dialogLines[0];
