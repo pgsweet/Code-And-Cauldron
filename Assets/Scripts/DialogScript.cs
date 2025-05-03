@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,7 +38,7 @@ public class DialogScript : MonoBehaviour
         {
             return;
         }
-        
+
         if (dialogLines.Count > 0)
         {
             dialogText.GetComponent<TMPro.TMP_Text>().text = dialogLines[0];

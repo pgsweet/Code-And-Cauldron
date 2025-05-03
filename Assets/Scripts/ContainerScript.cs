@@ -1,11 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.UIElements;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
-using System.Linq;
 
 public class ContainerScript : MonoBehaviour
 {
