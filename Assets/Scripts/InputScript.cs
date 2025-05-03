@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -119,6 +118,10 @@ public class InputScript : MonoBehaviour
         {
             for (int i = 0; i < inputItems.Count; i++)
             {
+                if (i == 6){
+                    newText += "...";
+                    break;
+                }
                 newText += $"{inputItems[i][0].ToString().Replace("_", " ")}(s): {inputItems[i][1]}\n";
             }
         }

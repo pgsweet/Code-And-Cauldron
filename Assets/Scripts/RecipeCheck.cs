@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 
@@ -36,7 +37,6 @@ class Spell {
 public class RecipeCheck
 {
     private List<Potion> PotionList = new List<Potion>() 
-
     {
         new Potion(
             "Potion of Love",
@@ -159,5 +159,12 @@ public class RecipeCheck
             return true;
         }
         return false;
+    }
+
+    public System.Object[] getRandomPotion(){
+        Random rnd = new Random();
+        int potionNum = rnd.Next(0, PotionList.Count);
+        Potion p = PotionList[potionNum];
+        return new System.Object[] {p.GetName(), p.GetRequiredItems()};
     }
 }
