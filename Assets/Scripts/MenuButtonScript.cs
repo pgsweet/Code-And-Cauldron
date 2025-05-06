@@ -8,6 +8,10 @@ public class MenuButtonScript : MonoBehaviour
     public GameObject levelSelectButton;
     public GameObject codeEditorButton;
     public GameObject helpPanel;
+    public GameObject recipeBook;
+    public GameObject taskList;
+    public GameObject recipeBookButton;
+    public GameObject taskListButton;
 
 
     [ContextMenu("Open Editor")]
@@ -26,6 +30,17 @@ public class MenuButtonScript : MonoBehaviour
         }
         codeEditor.GetComponent<EditorScript>().toggleEditor();
         levelSelect.GetComponent<LevelSelectScript>().toggleLevelSelect();
+    }
+
+    public void openRecipeBook()
+    {
+        if (recipeBook == null)
+        {
+            Debug.LogError("RecipeBook not found.");
+        }
+
+        recipeBook.GetComponent<RecipeBookScript>().toggleRecipeBook();
+        taskList.GetComponent<TaskListScript>().toggleTaskList();
     }
 
     public void runCode()
@@ -74,6 +89,22 @@ public class MenuButtonScript : MonoBehaviour
         codeEditorButton.GetComponent<Button>().interactable = true;
     }
 
+    public void enableRecipeBook()
+    {
+        recipeBook.SetActive(true);
+        taskList.SetActive(false);
+        recipeBookButton.GetComponent<Button>().interactable = false;
+        taskListButton.GetComponent<Button>().interactable = true;
+    }
+
+    public void enableTaskList()
+    {
+        recipeBook.SetActive(false);
+        taskList.SetActive(true);
+        recipeBookButton.GetComponent<Button>().interactable = true;
+        taskListButton.GetComponent<Button>().interactable = false;
+    }
+
     public void toggleHelp()
     {
         if (helpPanel == null)
@@ -83,4 +114,6 @@ public class MenuButtonScript : MonoBehaviour
         }
         helpPanel.SetActive(!helpPanel.activeSelf);
     }
+
+
 }
