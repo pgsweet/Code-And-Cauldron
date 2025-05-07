@@ -4,6 +4,16 @@ public class AccordionScript : MonoBehaviour
 {
     void Start()
     {
+        updateObjects();
+    }
+
+    void Update()
+    {
+        updateObjects();
+    }
+
+    private void updateObjects()
+    {
         updateList();
         setTotalHeight();
         
@@ -33,9 +43,7 @@ public class AccordionScript : MonoBehaviour
                 totalHeight += child.GetComponent<RectTransform>().rect.height;
             }
         }
-
-        Debug.Log(totalHeight);
-
+        
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, totalHeight);
     }

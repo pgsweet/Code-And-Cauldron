@@ -30,4 +30,16 @@ public class AccordionObjectScript : MonoBehaviour
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, totalHeight);
     }
+
+    void OnMouseDown()
+    {
+        Debug.Log("Clicked");
+        foreach (Transform c in this.transform)
+        {
+            if (c.GetComponent<AccordionTextBodyScript>() != null)
+            {
+                c.gameObject.SetActive(c.gameObject.activeSelf);
+            }
+        }
+    }
 }
