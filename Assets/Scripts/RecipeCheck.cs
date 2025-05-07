@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 
-
 class Potion {
     string name;
     List<System.Object[]> requiredItems = new List<System.Object[]>();

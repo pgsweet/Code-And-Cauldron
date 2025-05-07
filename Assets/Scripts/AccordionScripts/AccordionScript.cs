@@ -14,7 +14,7 @@ public class AccordionScript : MonoBehaviour
         
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         float parentHeight = gameObject.transform.parent.GetComponent<RectTransform>().sizeDelta.y;
-        rectTransform.localPosition = new Vector2(0, (parentHeight / 2) - (rectTransform.sizeDelta.y / 2) - 60);
+        rectTransform.localPosition = new Vector2(0, (parentHeight / 2) - (rectTransform.sizeDelta.y / 2) - 120);
     }
 
     private void updateList()

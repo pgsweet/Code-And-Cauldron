@@ -43,6 +43,17 @@ public class AccordionObjectScript : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    public void disableArrow()
+    {
+        foreach (Transform c in this.transform)
+        {
+            if (c.GetComponent<AccordionTitleScript>() != null)
+            {
+                c.GetComponent<AccordionTitleScript>().disableArrow();
+            }
+        }
+    }
+
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         foreach (Transform c in this.transform)
@@ -64,6 +75,7 @@ public class AccordionObjectScript : MonoBehaviour, IPointerClickHandler
             if (child != this.transform)
             {
                 child.GetComponent<AccordionObjectScript>().disableText();
+                child.GetComponent<AccordionObjectScript>().disableArrow();
             }
         }
 
