@@ -1,7 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class AccordionObjectScript : MonoBehaviour
+public class AccordionObjectScript : MonoBehaviour, IPointerClickHandler
 {
     public void initalize()
     {
@@ -31,15 +32,41 @@ public class AccordionObjectScript : MonoBehaviour
         rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, totalHeight);
     }
 
-    void OnMouseDown()
+    public void disableText()
     {
-        Debug.Log("Clicked");
         foreach (Transform c in this.transform)
         {
             if (c.GetComponent<AccordionTextBodyScript>() != null)
             {
-                c.gameObject.SetActive(c.gameObject.activeSelf);
+                c.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void OnPointerClick(PointerEventData pointerEventData)
+    {
+        foreach (Transform c in this.transform)
+        {
+            if (c.GetComponent<AccordionTextBodyScript>() != null)
+            {
+                c.gameObject.SetActive(!c.gameObject.activeSelf);
+            }
+            else if (c.GetComponent<AccordionTitleScript>() != null) 
+            {
+                c.GetComponent<AccordionTitleScript>().toggleArrow();
+            }
+        }
+
+        GameObject parent = this.transform.parent.gameObject;
+
+        foreach (Transform child in parent.transform)
+        {
+            if (child != this.transform)
+            {
+                child.GetComponent<AccordionObjectScript>().disableText();
+            }
+        }
+
+        parent.GetComponent<AccordionScript>().updateObjects();
     }
 }

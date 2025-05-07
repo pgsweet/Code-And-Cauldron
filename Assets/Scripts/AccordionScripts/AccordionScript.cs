@@ -7,12 +7,7 @@ public class AccordionScript : MonoBehaviour
         updateObjects();
     }
 
-    void Update()
-    {
-        updateObjects();
-    }
-
-    private void updateObjects()
+    public void updateObjects()
     {
         updateList();
         setTotalHeight();
