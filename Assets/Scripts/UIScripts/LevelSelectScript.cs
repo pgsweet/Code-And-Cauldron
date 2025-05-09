@@ -229,11 +229,11 @@ public class LevelSelectScript : MonoBehaviour
             new List<System.Object[]>() // input items
             {
                 new System.Object[] { "Mushroom", 1, -1 },
-                new System.Object[] { "Goblin_eye", 1, -1 },
+                new System.Object[] { "Goblin_Eye", 1, -1 },
             },
             new List<System.Object[]>() // output items
             {
-                new System.Object[] { "Goblin_eye", 1 },
+                new System.Object[] { "Goblin_Eye", 1 },
                 new System.Object[] { "Mushroom", 1 },
             },
             1, // level num
@@ -308,7 +308,7 @@ public class LevelSelectScript : MonoBehaviour
                 new System.Object[] {"Feather", 3},
                 new System.Object[] {"Spider", 2},
                 new System.Object[] {"Ruby", 5},
-                new System.Object[] {"Dragon_blood", 1},
+                new System.Object[] {"Dragon_Blood", 1},
                 new System.Object[] {"Goblin_Eye", 1},
                 new System.Object[] {"Red_Mushroom", 2}
             },

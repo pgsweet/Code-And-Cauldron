@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using Unity.VisualScripting;
+using System.Linq;
 
 public class OutputScript : MonoBehaviour
 {
@@ -110,23 +112,38 @@ public class OutputScript : MonoBehaviour
     public void enableInfoPanel()
     {
         string newText = "Required Output:\n";
-        for (int i = 0; i < requiredItems.Count; i++)
+        
+        List<string> t = convertToText();
+
+        foreach (string line in t)
         {
-            newText += requiredItems[i][1].ToString() + " " + requiredItems[i][0].ToString().Replace("_", " ") + "(s),";
-            if (i < currentOutputItems.Count && currentOutputItems[0][0].ToString() == requiredItems[i][0].ToString() && Int32.Parse(currentOutputItems[0][1].ToString()) == Int32.Parse(requiredItems[i][1].ToString()))
-            {
-                newText += " Done\n";
-            }
-            else
-            {
-                newText += " Not Done\n";
-            }
+            newText += line + '\n';
         }
 
         Transform[] children = infoPanel.GetComponentsInChildren<Transform>(true);
         children[1].gameObject.GetComponent<TMP_Text>().text = newText;
 
         infoPanel.SetActive(true);
+    }
+
+    public List<string> convertToText()
+    {
+        // TODO: check this
+        List<string> text = new List<string>();
+        for (int i = 0; i < requiredItems.Count; i++)
+        {
+            string t = requiredItems[i][1].ToString() + " " + requiredItems[i][0].ToString().Replace("_", " ") + "(s),";
+            if (i < currentOutputItems.Count && currentOutputItems[0][0].ToString() == requiredItems[i][0].ToString() && Int32.Parse(currentOutputItems[0][1].ToString()) == Int32.Parse(requiredItems[i][1].ToString()))
+            {
+                t += " Done";
+            }
+            else
+            {
+                t += " Not Done";
+            }
+            text.Add(t);
+        }
+        return text;
     }
 
     public void disableInfoPanel()

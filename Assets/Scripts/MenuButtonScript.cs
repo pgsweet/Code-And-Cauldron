@@ -103,6 +103,7 @@ public class MenuButtonScript : MonoBehaviour
         taskList.SetActive(true);
         recipeBookButton.GetComponent<Button>().interactable = true;
         taskListButton.GetComponent<Button>().interactable = false;
+        taskList.GetComponent<TaskListScript>().updateTaskList();
     }
 
     public void toggleHelp()

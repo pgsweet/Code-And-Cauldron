@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TaskListScript : MonoBehaviour
@@ -5,6 +7,8 @@ public class TaskListScript : MonoBehaviour
     private bool toggled = false;
 
     public GameObject taskPanel;
+    public GameObject taskText;
+    public OutputScript outputScript;
 
     public void toggleTaskList()
     {
@@ -19,5 +23,20 @@ public class TaskListScript : MonoBehaviour
         gameObject.transform.localPosition += new Vector3(panelWidth * moveDirection, 0, 0);
 
         toggled = !toggled;
+
+        updateTaskList();
+    }
+
+    public void updateTaskList()
+    {
+        // TODO: check this
+        string text = "";
+        List<string> lines = outputScript.convertToText();
+        foreach (string line in lines)
+        {
+            text += "- " + line + "\n";
+        }
+
+        taskText.GetComponent<TMP_Text>().text = text;
     }
 }
