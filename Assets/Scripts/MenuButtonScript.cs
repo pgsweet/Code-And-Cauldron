@@ -51,6 +51,8 @@ public class MenuButtonScript : MonoBehaviour
             return;
         }
         codeEditor.GetComponent<EditorScript>().runCode();
+        taskList.GetComponent<TaskListScript>().closeIfOpen();
+        recipeBook.GetComponent<RecipeBookScript>().closeIfOpen();
     }
 
     public void clearCode()

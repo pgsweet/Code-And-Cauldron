@@ -39,4 +39,12 @@ public class TaskListScript : MonoBehaviour
 
         taskText.GetComponent<TMP_Text>().text = text;
     }
+
+    public void closeIfOpen()
+    {
+        if (toggled)
+        {
+            this.toggleTaskList();
+        }
+    }
 }

@@ -23,4 +23,12 @@ public class RecipeBookScript : MonoBehaviour
 
         toggled = !toggled;
     }
+
+    public void closeIfOpen()
+    {
+        if (toggled)
+        {
+            this.toggleRecipeBook();
+        }
+    }
 }
