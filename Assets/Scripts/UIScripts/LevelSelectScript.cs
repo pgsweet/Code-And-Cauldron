@@ -215,7 +215,8 @@ public class LevelSelectScript : MonoBehaviour
                 "Let's start off with the INP and OUT commands.",
                 "The INP command inputs the item from the input teleporter and places it into the container you specify.",
                 "The OUT command takes the item from the container and places it into the output teleporter.",
-                "Give it a try with the Amethyst I've given you."
+                "If you ever forget how a command works, open the help menu in the code editor.",
+                "Now that you know the basics, try outputting the amethyst I've given you."
             },
             new List<string>() // ending dialog
             {
