@@ -4,7 +4,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-
 public static class CommandConstants
 {
     public const string MOV = "mov";
@@ -33,6 +32,24 @@ public class EditorScript : MonoBehaviour
     public OutputScript outputScript;
     public LevelSelectScript levelSelectScript;
 
+    // Audio fields for sound effects
+    public AudioSource audioSource;
+    public AudioClip movSound;
+    public AudioClip botSound;
+    public AudioClip splSound;
+    public AudioClip clrSound;
+    public AudioClip inpSound;
+    public AudioClip outSound;
+    public AudioClip errorSound;
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
 
     public void startGame()
     {
@@ -42,6 +59,7 @@ public class EditorScript : MonoBehaviour
             return;
         }
     }
+
 
     public void toggleEditor()
     {
@@ -67,6 +85,7 @@ public class EditorScript : MonoBehaviour
         if (string.IsNullOrEmpty(rawCode))
         {
             Debug.LogError("Code is empty.");
+            PlaySound(errorSound);
             return;
         }
 
@@ -139,25 +158,32 @@ public class EditorScript : MonoBehaviour
             {
                 case (CommandConstants.MOV):
                     error = movCommand(line);
+                    PlaySound(movSound);
                     break;
                 case (CommandConstants.BOT):
                     error = botCommand(line);
+                    PlaySound(botSound);
                     break;
                 case (CommandConstants.SPL):
                     error = splCommand(line);
+                    PlaySound(splSound);
                     break;
                 case (CommandConstants.CLR):
                     error = clrCommand(line);
+                    PlaySound(clrSound);
                     break;
                 case (CommandConstants.INP):
                     error = inpCommand(line);
+                    PlaySound(inpSound);
                     break;
                 case (CommandConstants.OUT):
                     error = outCommand(line);
+                    PlaySound(outSound);
                     break;
                 default:
                     Debug.LogError("Unknown command: " + line[0]);
                     error = "Unknown command: " + line[0];
+                    PlaySound(errorSound);
                     break;
             }
 
@@ -165,6 +191,7 @@ public class EditorScript : MonoBehaviour
 
             if (error != null) {
                 errorWindowScript.setErrorMessage(lineCount, error);
+                PlaySound(errorSound);
                 break;
             }
 
