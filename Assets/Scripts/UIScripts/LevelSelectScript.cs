@@ -224,6 +224,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Now you can move on to the next level, navigate to the level select screen and select the next level."
             }
         ));
+        levels[0].SetCompleted(true);
 
         // Level 1 different output order
         levels.Add(new Level(
@@ -251,6 +252,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Next up we'll learn how to craft a potion!"
             }
         ));
+        levels[0].SetCompleted(true);
 
         // Level 2 potion crafting
         levels.Add(new Level(
@@ -276,6 +278,7 @@ public class LevelSelectScript : MonoBehaviour
                 "Navigate on over to the next level to learn about them."
             }
         ));
+        levels[2].SetCompleted(true);
 
         // Level 3 mov command num of items
         levels.Add(new Level(

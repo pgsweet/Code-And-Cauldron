@@ -1,5 +1,7 @@
+using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 class Potion {
     string name;
@@ -33,7 +35,7 @@ class Spell {
     }
 }
 
-public class RecipeCheck
+public class RecipeCheck : MonoBehaviour
 {
     private List<Potion> PotionList = new List<Potion>() 
     {
@@ -113,6 +115,7 @@ public class RecipeCheck
                 bool validItems = true;
                 for (int i = 0; i < inputItems.Count; i++)
                 {
+                    UnityEngine.Debug.Log($"Potion: {potion.GetName()}; {item[0]}: {item[1]}, inputted {inputItems[i][0]}: {inputItems[i][1]}");
                     if (!MatchItem(item, inputItems[i]))
                     {
                         validItems = false;
@@ -155,13 +158,14 @@ public class RecipeCheck
     {
         if (item1[0].Equals(item2[0]) && (int)item2[1] % (int)item1[1] == 0)
         {
+            UnityEngine.Debug.Log($"{item1[0]} and {item2[0]} match");
             return true;
         }
         return false;
     }
 
     public System.Object[] getRandomPotion(){
-        Random rnd = new Random();
+        System.Random rnd = new System.Random();
         int potionNum = rnd.Next(0, PotionList.Count);
         Potion p = PotionList[potionNum];
         return new System.Object[] {p.GetName(), p.GetRequiredItems()};
