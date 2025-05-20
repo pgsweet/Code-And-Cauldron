@@ -21,5 +21,8 @@ To make these potions and spells you'll need to write some assembly code. You'll
 [Find the doc here!](/docs/egdd.md)
 
 ## Credits and Acknowledgements
-(Coming Soon)
+Correct Sound Effect: https://pixabay.com/sound-effects/video-games-select-337214/
+Cauldron Bubble Sound Effect: https://pixabay.com/sound-effects/big-bubble-2-169074/
+Move Ingredients Sound Effect: https://pixabay.com/sound-effects/click-151673/
+Wrong Sound Effect: https://pixabay.com/sound-effects/wrong-47985/
 
