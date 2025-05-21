@@ -38,3 +38,8 @@ To make these potions and spells you'll need to write some assembly code. You'll
 - Move Ingredients Sound Effect: https://pixabay.com/sound-effects/click-151673/
 - Wrong Sound Effect: https://pixabay.com/sound-effects/wrong-47985/
 
+## Final Game
+[Play the game here!](https://pgsweet.github.io/Code-And-Cauldron/)
+
+## Final Slides
+[View them here!](https://docs.google.com/presentation/d/1Wt9afTafJM2RoO-2qv5W47frGdzI0QBUXgf5BGYQO3U/edit?usp=sharing)
