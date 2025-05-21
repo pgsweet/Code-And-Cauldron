@@ -51,6 +51,8 @@ public class MenuButtonScript : MonoBehaviour
             return;
         }
         codeEditor.GetComponent<EditorScript>().runCode();
+        taskList.GetComponent<TaskListScript>().closeIfOpen();
+        recipeBook.GetComponent<RecipeBookScript>().closeIfOpen();
     }
 
     public void clearCode()
@@ -103,6 +105,7 @@ public class MenuButtonScript : MonoBehaviour
         taskList.SetActive(true);
         recipeBookButton.GetComponent<Button>().interactable = true;
         taskListButton.GetComponent<Button>().interactable = false;
+        taskList.GetComponent<TaskListScript>().updateTaskList();
     }
 
     public void toggleHelp()

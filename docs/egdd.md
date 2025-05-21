@@ -172,9 +172,3 @@ The primary display of the game will be a wizard's cabin. A room inside a wooden
   - Player giving the right potion/spell: Man laughing sound effect
   - Player flips through old recipe book: Page flipping sound effect
 
-
-# Metadata
-
-* Template created by Austin Cory Bart <acbart@udel.edu>, Mark Sheriff, Alec Markarian, and Benjamin Stanley.
-* Version 0.0.3
-
