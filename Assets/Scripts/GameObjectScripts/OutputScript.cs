@@ -54,7 +54,18 @@ public class OutputScript : MonoBehaviour
             outputCount.SetActive(false);
             return;
         }
+
         System.Object[] currItem = currentOutputItems[currentOutputItems.Count - 1];
+
+        if (char.ToLower(currItem[0].ToString()[0]) == 'p')
+        {
+            spriteContainer.transform.localScale = new Vector3(450, 450);
+        }
+        else
+        {
+            spriteContainer.transform.localScale = new Vector3(800, 800);
+        }
+
         Sprite newSprite = Resources.Load<Sprite>("Items/" + currItem[0].ToString());
         if (newSprite == null)
         {

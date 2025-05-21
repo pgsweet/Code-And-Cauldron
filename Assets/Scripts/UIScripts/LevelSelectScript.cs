@@ -212,7 +212,10 @@ public class LevelSelectScript : MonoBehaviour
             {
                 "So you're the new apprentice huh?",
                 "Well I guess I need to train you on how to create my potions and spells.",
-                "Let's start off with the INP and OUT commands.",
+                "Before we get started let me show you around, in the bottom right you'll see your code editor and level select menu.",
+                "On the bottom left you'll see the task list and recipe book.",
+                "You can also hover over the containers to see information about them.",
+                "Let's start making some potions, first lets learn the INP and OUT commands.",
                 "The INP command inputs the item from the input teleporter and places it into the container you specify.",
                 "The OUT command takes the item from the container and places it into the output teleporter.",
                 "If you ever forget how a command works, open the help menu in the code editor.",
@@ -224,7 +227,6 @@ public class LevelSelectScript : MonoBehaviour
                 "Now you can move on to the next level, navigate to the level select screen and select the next level."
             }
         ));
-        levels[0].SetCompleted(true);
 
         // Level 1 different output order
         levels.Add(new Level(
@@ -252,7 +254,6 @@ public class LevelSelectScript : MonoBehaviour
                 "Next up we'll learn how to craft a potion!"
             }
         ));
-        levels[0].SetCompleted(true);
 
         // Level 2 potion crafting
         levels.Add(new Level(
@@ -278,7 +279,6 @@ public class LevelSelectScript : MonoBehaviour
                 "Navigate on over to the next level to learn about them."
             }
         ));
-        levels[2].SetCompleted(true);
 
         // Level 3 mov command num of items
         levels.Add(new Level(

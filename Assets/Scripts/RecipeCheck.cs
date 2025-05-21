@@ -98,8 +98,6 @@ public class RecipeCheck : MonoBehaviour
             }
         )
     };
-    private List<Spell> SpellList = new List<Spell>();
-
 
     public System.Object[] CheckRecipe(List<System.Object[]> inputItems) 
     {
@@ -107,49 +105,39 @@ public class RecipeCheck : MonoBehaviour
         bool foundCraft = false;
         int numCrafts = -1;
 
-        foreach (Potion potion in PotionList)
+        for (int p = 0; p < PotionList.Count && !foundCraft; p++)
         {
+            Potion potion = PotionList[p];
+            bool validItems = true;
             List<System.Object[]> requiredItems = potion.GetRequiredItems();
-            foreach (System.Object[] item in requiredItems)
+            numCrafts = -1;
+            for (int i = 0; i < inputItems.Count && i < requiredItems.Count && validItems; i++)
             {
-                bool validItems = true;
-                for (int i = 0; i < inputItems.Count; i++)
+                System.Object[] item = requiredItems[i];
+                if (!MatchItem(item, inputItems[i]))
                 {
-                    UnityEngine.Debug.Log($"Potion: {potion.GetName()}; {item[0]}: {item[1]}, inputted {inputItems[i][0]}: {inputItems[i][1]}");
-                    if (!MatchItem(item, inputItems[i]))
+                    validItems = false;
+                }
+                else
+                {
+                    if (numCrafts == -1)
+                    {
+                        numCrafts = (int)inputItems[i][1] / (int)item[1];
+                    }
+                    else if (numCrafts != (int)((int)inputItems[i][1] / (int)item[1])) 
                     {
                         validItems = false;
-                        break;
                     }
-                    else
-                    {
-                        if (numCrafts == -1)
-                        {
-                            numCrafts = (int)((int)inputItems[i][1] / (int)item[1]);
-                        }
-                        else if (numCrafts != (int)((int)inputItems[i][1] / (int)item[1]))
-                        {
-                            validItems = false;
-                            break;
-                        }
-                    }
-                }
-                if (validItems)
-                {
-                    craftName = potion.GetName();
-                    foundCraft = true;
-                    break;
-                }
-                else {
-                    break;
                 }
             }
-            if (foundCraft)
+
+            if (validItems)
             {
+                craftName = potion.GetName();
+                foundCraft = true;
                 break;
             }
         }
-        // TODO: check spells
 
         return new System.Object[] { craftName, numCrafts };
     }
@@ -158,7 +146,6 @@ public class RecipeCheck : MonoBehaviour
     {
         if (item1[0].Equals(item2[0]) && (int)item2[1] % (int)item1[1] == 0)
         {
-            UnityEngine.Debug.Log($"{item1[0]} and {item2[0]} match");
             return true;
         }
         return false;

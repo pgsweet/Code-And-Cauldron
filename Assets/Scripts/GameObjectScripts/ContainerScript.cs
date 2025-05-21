@@ -27,6 +27,15 @@ public class ContainerScript : MonoBehaviour
         itemNameText.GetComponent<TMP_Text>().text = newItemName.Replace("_", " ");
         numItemsText.GetComponent<Text>().text = newItemCount.ToString();
 
+        if (char.ToLower(newItemName[0]) == 'p')
+        {
+            spriteContainer.transform.localScale = new Vector3(700, 700);
+        }
+        else
+        {
+            spriteContainer.transform.localScale = new Vector3(1200, 1200);
+        }
+
         Sprite newSprite = Resources.Load<Sprite>("Items/" + newItemName);
         if (newSprite == null)
         {

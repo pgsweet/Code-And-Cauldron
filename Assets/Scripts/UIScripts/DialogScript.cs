@@ -6,6 +6,8 @@ public class DialogScript : MonoBehaviour
     private List<string> dialogLines = new List<string>();
     private int currentLineIndex = -1;
     public GameObject dialogText;
+    public AudioSource audioSource;
+    public AudioClip click;
 
     public void startGame()
     {
@@ -21,6 +23,10 @@ public class DialogScript : MonoBehaviour
 
     public void nextLine()
     {
+        if (audioSource != null && click != null)
+        {
+            audioSource.PlayOneShot(click);
+        }
         currentLineIndex++; 
         if (currentLineIndex < dialogLines.Count)
         {

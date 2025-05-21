@@ -50,7 +50,6 @@ public class EditorScript : MonoBehaviour
         }
     }
 
-
     public void startGame()
     {
         if (containers[0] == null || containers[1] == null || containers[2] == null || containers[3] == null)
@@ -59,7 +58,6 @@ public class EditorScript : MonoBehaviour
             return;
         }
     }
-
 
     public void toggleEditor()
     {
