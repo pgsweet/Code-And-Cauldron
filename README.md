@@ -1,6 +1,6 @@
 # Code and Cauldron
-You're a wizard's apprentice and you need to make potions and spells for them!
-To make these potions and spells you'll need to write some assembly code. You'll recieve a list of potions and spells to make, along with a recipie book, that will guide you through your apprenticeship!
+You're a wizard's apprentice and you need to make their potions!
+To make these potions and spells you'll need to write some assembly code. You'll recieve a list of potions to make, along with a recipie book, that will guide you through your apprenticeship!
 
 ## Developers:
 - Patrick Sweet: pgsweet@udel.edu
@@ -8,13 +8,23 @@ To make these potions and spells you'll need to write some assembly code. You'll
 - Shreya Pamulapati: shrey@udel.edu
 
 ## Basic Instructions
-(Coming Soon)
+- Hover over the output teleporter or view the task list to view your needed items
+- Open the code editor and type your code to craft the potions!
+- Commands:
+    - inp \<container>
+    - out \<container> \<num of items>
+    - mov \<container> \<container> \<num items (optional)>
+    - bot \<container> \<number of potions to craft>
+    - clr \<cauldron>
+- Complete the level and try beating them all!
 
 ## Screenshots
-(Coming Soon)
+<img src="/docs/TitleScreen.png" alt="Title Screen" height="320">
+<img src="/docs/EndOfLevelZero.png" alt="End of level zero" height="320">
+<img src="/docs/Menus.png" alt="Recipe Book and Level Select" height="320">
 
 ## Gameplay Video
-(Coming Soon)
+<video src="/docs/Code&Cauldron.mp4" height="320" controls>
 
 ## Educational Game Design Doccument
 
