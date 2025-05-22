@@ -24,7 +24,7 @@ To make these potions and spells you'll need to write some assembly code. You'll
 <img src="/docs/Menus.png" alt="Recipe Book and Level Select" height="320">
 
 ## Gameplay Video
-[![Video Here](https://raw.githubusercontent.com/pgsweet/Code-And-Cauldron/main/docs/TitleScreen.png)](https://raw.githubusercontent.com/pgsweet/Code-And-Cauldron/main/docs/Code&Cauldron.mp4)
+<video src="/docs/Code&Cauldron.mp4" width="320" height="240" controls></video>
 
 ## Educational Game Design Document
 
