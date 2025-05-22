@@ -19,8 +19,13 @@ To make these potions and spells you'll need to write some assembly code. You'll
 - Complete the level and try beating them all!
 
 ## Screenshots
+### Title Screen
 <img src="/docs/TitleScreen.png" alt="Title Screen" height="320">
+
+### Won a level
 <img src="/docs/EndOfLevelZero.png" alt="End of level zero" height="320">
+
+### Recipe Book and Level Select
 <img src="/docs/Menus.png" alt="Recipe Book and Level Select" height="320">
 
 ## Gameplay Video
