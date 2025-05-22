@@ -24,7 +24,7 @@ To make these potions and spells you'll need to write some assembly code. You'll
 <img src="/docs/Menus.png" alt="Recipe Book and Level Select" height="320">
 
 ## Gameplay Video
-<video src="https://youtu.be/_Y2WKs8EwzU" width="320" height="240" controls></video>
+[![Watch the video here](https://img.youtube.com/vi/_Y2WKs8EwzU/0.jpg)](https://www.youtube.com/watch?v=_Y2WKs8EwzU)
 
 ## Educational Game Design Document
 
