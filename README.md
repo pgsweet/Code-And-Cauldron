@@ -1,6 +1,6 @@
 # Code and Cauldron
-You're a wizard's apprentice and you need to make their potions!
-To make these potions and spells you'll need to write some assembly code. You'll recieve a list of potions to make, along with a recipie book, that will guide you through your apprenticeship!
+You're a wizard's apprentice, and you need to make their potions!
+To make these potions and spells, you'll need to write some assembly code. You'll receive a list of potions to make, along with a recipe book that will guide you through your apprenticeship!
 
 ## Developers:
 - Patrick Sweet: pgsweet@udel.edu
